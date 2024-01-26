@@ -31,7 +31,6 @@ O projeto "Loja Online Spring MVC" é uma aplicação web que oferece uma plataf
 - Spring Data JPA
 - Spring Security
 - Thymeleaf
-- Banco de dados H2 (ou banco de dados de sua escolha)
+- PostgreSQL
 
-**Objetivo:**
-O objetivo principal deste projeto é fornecer aos desenvolvedores uma oportunidade de aplicar e aprimorar seus conhecimentos em Spring MVC, desenvolvendo uma aplicação completa e funcional que simula uma experiência de compra online. Ao seguir os passos fornecidos e expandir o projeto conforme necessário, os desenvolvedores podem ganhar habilidades práticas na construção de aplicativos web robustos usando a plataforma Spring.
+
