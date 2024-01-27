@@ -1,0 +1,11 @@
+package com.beckman.lojaonline.services;
+
+import org.springframework.stereotype.Service;
+
+import com.beckman.lojaonline.repositories.CartRepository;
+
+@Service
+public class CartService {
+private CartRepository repository;
+
+}

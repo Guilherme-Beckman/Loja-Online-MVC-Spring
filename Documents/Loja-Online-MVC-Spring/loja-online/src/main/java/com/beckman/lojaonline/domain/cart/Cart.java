@@ -11,17 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
 public class Cart {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +26,46 @@ public Cart(CartDTO data) {
 	this.id = data.id();
 	this.productcs = data.produtcs();
 	this.user = data.user();
+}
+
+
+public Cart() {
+	
+}
+public Cart(Long id, List<Product> productcs, User user) {
+	this.id = id;
+	this.productcs = productcs;
+	this.user = user;
+}
+
+
+public Long getId() {
+	return id;
+}
+
+
+public void setId(Long id) {
+	this.id = id;
+}
+
+
+public List<Product> getProductcs() {
+	return productcs;
+}
+
+
+public void setProductcs(List<Product> productcs) {
+	this.productcs = productcs;
+}
+
+
+public User getUser() {
+	return user;
+}
+
+
+public void setUser(User user) {
+	this.user = user;
 }
 
 }
