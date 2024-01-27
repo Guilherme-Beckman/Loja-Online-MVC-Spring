@@ -1,0 +1,44 @@
+package com.beckman.lojaonline.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.beckman.lojaonline.domain.order.exceptions.OrderNotFoundException;
+import com.beckman.lojaonline.repositories.OrderRepository;
+import com.beckman.lojaonline.repositories.ProductRepository;
+
+@Service
+public class ProductService {
+private ProductRepository repository;
+
+public ProductService(ProductRepository repository) {
+	this.repository = repository;
+}
+
+public Product insert(ProductDTO data){
+	Product newProduct = new Product(data);
+    this.repository.save(newProduct);
+    return newProduct;
+}
+
+public Product update(Long id, ProductDTO data) {
+	Product product = this.repository.findById(id).orElseThrow(ProductNotFoundException::new);
+	if(!(data.products()==null)) {
+		product.setProducts(data.products());
+	};
+	return order;	
+}
+public void delete(Long id) {
+	Order order = this.repository.findById(id).orElseThrow(OrderNotFoundException::new);
+this.repository.delete(order);
+}
+public List<Order> getAll(){
+	return repository.findAll();
+}
+public Optional<Order> findById(Long id){
+	return this.repository.findById(id);
+}
+
+}

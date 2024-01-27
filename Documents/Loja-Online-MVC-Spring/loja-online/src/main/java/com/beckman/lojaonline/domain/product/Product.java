@@ -8,10 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Product {
 @Id
@@ -25,5 +21,31 @@ public Product(ProductDTO data) {
 	this.price = data.price();
 	// TODO Auto-generated constructor stub
 }
+public Product(Long id, String name, Integer price) {
+	this.id = id;
+	this.name = name;
+	this.price = price;
+}
+public Product() {
+}
+public Long getId() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public Integer getPrice() {
+	return price;
+}
+public void setPrice(Integer price) {
+	this.price = price;
+}
+
 
 }

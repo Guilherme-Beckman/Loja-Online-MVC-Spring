@@ -1,0 +1,5 @@
+package com.beckman.lojaonline.domain.product.exceptions;
+
+public class ProductNotFoundException {
+
+}

@@ -3,6 +3,7 @@ package com.beckman.lojaonline.domain.order;
 import java.util.List;
 
 
+
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.user.User;
 
@@ -12,15 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Order {
 @Id
@@ -36,6 +28,41 @@ public Order(OrderDTO data) {
 	this.products = data.products();
 	this.user = data.user();
 }
+
+public Order(Long id, User user, List<Product> products) {
+	this.id = id;
+	this.user = user;
+	this.products = products;
+}
+
+public Order() {
+
+}
+
+public Long getId() {
+	return id;
+}
+
+public void setId(Long id) {
+	this.id = id;
+}
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
+
+public List<Product> getProducts() {
+	return products;
+}
+
+public void setProducts(List<Product> products) {
+	this.products = products;
+}
+
 
 
 }
