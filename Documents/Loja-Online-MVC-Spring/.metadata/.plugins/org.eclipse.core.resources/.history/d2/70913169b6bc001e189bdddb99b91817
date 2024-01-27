@@ -1,0 +1,5 @@
+package com.beckman.lojaonline.domain.cart;
+
+public class Cart {
+
+}

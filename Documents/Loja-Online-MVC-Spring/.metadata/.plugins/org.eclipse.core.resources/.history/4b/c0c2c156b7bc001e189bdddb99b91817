@@ -1,0 +1,5 @@
+package com.beckman.lojaonline.domain.order;
+
+public record OrderDTO() {
+
+}
