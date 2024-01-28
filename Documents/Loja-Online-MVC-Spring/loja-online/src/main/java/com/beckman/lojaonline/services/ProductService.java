@@ -27,16 +27,13 @@ public Product insert(ProductDTO data){
 
 public Product update(Long id, ProductDTO data) {
 	Product product = this.repository.findById(id).orElseThrow(ProductNotFoundException::new);
-	if(!(data.name().isEmpty())) {
-		product.setName(data.name());
-	};
-	if(!(data.price()==null)) {
-		product.setPrice(data.price());
-	};
+	if(!(data.name().isEmpty())) product.setName(data.name());
+	if(!(data.price()==null)) product.setPrice(data.price());
+	this.repository.save(product);
 	return product;	
 }
 public void delete(Long id) {
-	Product product = this.repository.findById(id).orElseThrow(OrderNotFoundException::new);
+	Product product = this.repository.findById(id).orElseThrow(ProductNotFoundException::new);
 this.repository.delete(product);
 }
 public List<Product> getAll(){

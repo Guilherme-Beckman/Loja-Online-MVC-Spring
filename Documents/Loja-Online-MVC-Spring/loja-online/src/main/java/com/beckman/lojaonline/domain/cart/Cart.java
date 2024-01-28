@@ -3,7 +3,7 @@ package com.beckman.lojaonline.domain.cart;
 import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
-import com.beckman.lojaonline.domain.user.User;
+import com.beckman.lojaonline.domain.user.Users;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,26 +18,27 @@ public class Cart {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @OneToMany
-private List<Product> productcs;
+@JoinColumn(name = "products_id")
+private List<Product> products;
 @OneToOne
 @JoinColumn(name = "user_id")
-private User user;
+private Users Users;
 
 
 public Cart(CartDTO data) {
 	this.id = data.id();
-	this.productcs = data.produtcs();
-	this.user = data.user();
+	this.products = data.produtcs();
+	this.Users = data.user();
 }
 
 
 public Cart() {
 	
 }
-public Cart(Long id, List<Product> productcs, User user) {
+public Cart(Long id, List<Product> productcs, Users Users) {
 	this.id = id;
-	this.productcs = productcs;
-	this.user = user;
+	this.products = productcs;
+	this.Users = Users;
 }
 
 
@@ -52,22 +53,23 @@ public void setId(Long id) {
 
 
 public List<Product> getProductcs() {
-	return productcs;
+	return products;
 }
 
 
 public void setProductcs(List<Product> productcs) {
-	this.productcs = productcs;
+	this.products = productcs;
 }
 
 
-public User getUser() {
-	return user;
+public Users getUser() {
+	return Users;
 }
 
 
-public void setUser(User user) {
-	this.user = user;
+public void setUser(Users Users) {
+	this.Users = Users;
 }
+
 
 }

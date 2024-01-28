@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;loja-online/src/main/resources/db/migration/V2__ALTER_TABLE_.sql&apos; to &apos;V2__ALTER_TABLE.sql&apos;" description="Rename resource &apos;V2__ALTER_TABLE_.sql&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/db/migration/V2__ALTER_TABLE_.sql" name="V2__ALTER_TABLE.sql" stamp="1706475192210" updateReferences="true"/>
+</session>

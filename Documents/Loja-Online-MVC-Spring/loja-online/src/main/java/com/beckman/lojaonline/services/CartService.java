@@ -29,6 +29,7 @@ public Cart update(Long id, CartDTO data) {
 	if(!(data.produtcs()==null)) {
 		cart.setProductcs(data.produtcs());
 	};
+	this.repository.save(cart);
 	return cart;	
 }
 public void delete(Long id) {

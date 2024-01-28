@@ -2,10 +2,8 @@ package com.beckman.lojaonline.domain.order;
 
 import java.util.List;
 
-
-
 import com.beckman.lojaonline.domain.product.Product;
-import com.beckman.lojaonline.domain.user.User;
+import com.beckman.lojaonline.domain.user.Users;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +17,7 @@ public class Order {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @ManyToOne
-private User user;
+private Users user;
 @OneToMany
 private List<Product> products;
 
@@ -29,7 +27,7 @@ public Order(OrderDTO data) {
 	this.user = data.user();
 }
 
-public Order(Long id, User user, List<Product> products) {
+public Order(Long id, Users user, List<Product> products) {
 	this.id = id;
 	this.user = user;
 	this.products = products;
@@ -47,11 +45,11 @@ public void setId(Long id) {
 	this.id = id;
 }
 
-public User getUser() {
+public Users getUser() {
 	return user;
 }
 
-public void setUser(User user) {
+public void setUser(Users user) {
 	this.user = user;
 }
 

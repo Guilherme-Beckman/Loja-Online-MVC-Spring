@@ -3,8 +3,8 @@ package com.beckman.lojaonline.domain.cart;
 import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
-import com.beckman.lojaonline.domain.user.User;
+import com.beckman.lojaonline.domain.user.Users;
 
-public record CartDTO(Long id, List<Product> produtcs, User user) {
+public record CartDTO(Long id, List<Product> produtcs, Users user) {
 
 }

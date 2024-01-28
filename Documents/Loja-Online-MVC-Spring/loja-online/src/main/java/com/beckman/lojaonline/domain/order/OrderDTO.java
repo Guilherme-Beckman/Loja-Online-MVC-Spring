@@ -3,7 +3,7 @@ package com.beckman.lojaonline.domain.order;
 import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
-import com.beckman.lojaonline.domain.user.User;
+import com.beckman.lojaonline.domain.user.Users;
 
-public record OrderDTO(Long id, User user, List<Product> products) {
+public record OrderDTO(Long id, Users user, List<Product> products) {
 }

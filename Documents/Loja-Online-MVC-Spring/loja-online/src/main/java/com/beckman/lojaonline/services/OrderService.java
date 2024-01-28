@@ -29,6 +29,7 @@ public Order update(Long id, OrderDTO data) {
 	if(!(data.products()==null)) {
 		order.setProducts(data.products());
 	};
+	this.repository.save(order);
 	return order;	
 }
 public void delete(Long id) {

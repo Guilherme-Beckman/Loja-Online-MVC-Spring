@@ -1,5 +1,8 @@
 package com.beckman.lojaonline.domain.product;
 
-public record ProductDTO (Long id, String name, Integer price){
+import com.beckman.lojaonline.domain.cart.Cart;
+import com.beckman.lojaonline.domain.user.Users;
+
+public record ProductDTO (Long id, String name, Integer price, Users user, Cart cart){
 
 }

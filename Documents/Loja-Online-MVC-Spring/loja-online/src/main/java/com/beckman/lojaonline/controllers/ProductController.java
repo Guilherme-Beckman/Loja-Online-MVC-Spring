@@ -25,6 +25,11 @@ private ProductService service;
 public ProductController (ProductService service) {
 	this.service = service;
 }
+@GetMapping("/all")
+public ResponseEntity<List<Product>> getAll(){
+	List<Product> listAll = this.service.getAll();
+	return ResponseEntity.ok().body(listAll);
+	}
 
 @PostMapping
 public ResponseEntity<Product> insert(@RequestBody ProductDTO data) {
@@ -41,11 +46,7 @@ public ResponseEntity<Product> delete(@PathVariable("id")Long id) {
 	this.service.delete(id);
 	return ResponseEntity.noContent().build();
 }
-@GetMapping
-public ResponseEntity<List<Product>> getAll(){
-	List<Product> listAll = this.service.getAll();
-	return ResponseEntity.ok().body(listAll);
-	}
+
 
 @GetMapping("/{id}")
 public ResponseEntity<Optional<Product>> findById(@PathVariable("id") Long id){

@@ -1,0 +1,27 @@
+ALTER TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    cart_id BIGNIT,
+    product_id BIGNIT,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (cart_id) REFERENCES cart(id)
+);
+ALTER TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE PRECISION NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (cart_id) REFERENCES cart(id)
+);
+
+ALTER TABLE cart (
+    id SERIAL PRIMARY KEY,
+     user_id BIGINT,
+     product_id BIGNIT,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
