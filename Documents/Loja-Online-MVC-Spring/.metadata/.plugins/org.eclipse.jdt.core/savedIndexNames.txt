@@ -23,7 +23,6 @@ INDEX VERSION 1.134+/home/beckman/Documents/Loja-Online-MVC-Spring/.metadata/.pl
 3018444973.index
 444229967.index
 1228466763.index
-2511461370.index
 1640889740.index
 2525578366.index
 3335469642.index
@@ -91,6 +90,7 @@ INDEX VERSION 1.134+/home/beckman/Documents/Loja-Online-MVC-Spring/.metadata/.pl
 2898405224.index
 787041322.index
 1269106577.index
+1069823470.index
 1076069523.index
 958559623.index
 1768550464.index

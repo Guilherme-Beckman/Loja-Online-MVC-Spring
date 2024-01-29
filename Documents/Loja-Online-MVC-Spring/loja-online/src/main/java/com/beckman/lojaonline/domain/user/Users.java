@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.product.Product;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +23,7 @@ public class Users {
 	private Long id;
 	private String name;
 	private String password;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
 	@OneToMany
@@ -69,6 +71,7 @@ public class Users {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+		  
 	}
 
 	public List<Product> getProduct() {
