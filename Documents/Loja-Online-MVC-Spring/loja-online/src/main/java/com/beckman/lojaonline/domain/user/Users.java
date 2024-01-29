@@ -26,16 +26,16 @@ public class Users {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
-	@OneToMany
-	@JoinColumn(name = "product_id")
-	List<Product> product;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Product> products;
 
 	public Users(UserDTO data) {
 		this.id = data.id();
 		this.name = data.name();
 		this.password = data.password();
 		this.cart = data.cart();
-		this.product = data.product();
+		this.products = data.product();
 	}
 
 	public Users() {
@@ -75,11 +75,11 @@ public class Users {
 	}
 
 	public List<Product> getProduct() {
-		return product;
+		return products;
 	}
 
 	public void setProduct(List<Product> product) {
-		this.product = product;
+		this.products = product;
 	}
 	
 	

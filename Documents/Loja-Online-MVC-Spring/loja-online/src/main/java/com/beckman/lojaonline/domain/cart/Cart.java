@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.user.Users;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,27 +18,26 @@ public class Cart {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
-@OneToMany
-@JoinColumn(name = "products_id")
+@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 private List<Product> products;
 
-private Long user_id;
-
+@OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)
+private Users user;
 
 public Cart(CartDTO data) {
 	this.id = data.id();
 	this.products = data.produtcs();
-	this.user_id = data.id();
+	this.user = data.userid();
 }
 
 
 public Cart() {
 	
 }
-public Cart(Long id, List<Product> productcs, Long userid) {
+public Cart(Long id, List<Product> productcs, Users userid) {
 	this.id = id;
 	this.products = productcs;
-	this.user_id = userid;
+	this.user = userid;
 }
 
 
@@ -62,13 +61,13 @@ public void setProductcs(List<Product> productcs) {
 }
 
 
-public Long getUser() {
-	return user_id;
+public Users getUser() {
+	return user;
 }
 
 
-public void setUser(Long userid) {
-	this.user_id = userid;
+public void setUser(Users userid) {
+	this.user = userid;
 }
 
 

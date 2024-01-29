@@ -18,20 +18,20 @@ import jakarta.transaction.Transactional;
 @Service
 public class UserService {
 private UserRepository repository;
-@Autowired
-private CartRepository cartRepository;
+
 public UserService(UserRepository repository) {
 	this.repository = repository;
 }
 
 @Transactional
 public Users insert(UserDTO data){
-    Users newUser = new Users(data);
-    Cart newCart = new Cart();
-    newCart.setUser(newUser.getId());
-    newUser.setCart(newCart);
-    repository.save(newUser);
-    return newUser;
+	   Users user = new Users(data);
+    Cart shoppingCart = new Cart();
+    shoppingCart.setUser(user);
+    user.setCart(shoppingCart);
+    repository.save(user);
+
+    return user;
 }
 
 

@@ -19,6 +19,7 @@ private Integer price;
 @ManyToOne
 @JoinColumn(name = "user_id")
 private Users user;
+
 @ManyToOne
 @JoinColumn(name = "cart_id")
 private Cart cart;
