@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.user.Users;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -21,7 +22,9 @@ private Long id;
 @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 private List<Product> products;
 
-@OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)
+@OneToOne( cascade = CascadeType.ALL)
+@JoinColumn(name = "user_id")
+@JsonBackReference
 private Users user;
 
 public Cart(CartDTO data) {

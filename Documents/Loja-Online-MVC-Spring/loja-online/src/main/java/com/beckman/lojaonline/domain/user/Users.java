@@ -25,6 +25,7 @@ public class Users {
 	private String password;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
+	  @JsonManagedReference
 	private Cart cart;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -37,7 +38,7 @@ public class Users {
 		this.cart = data.cart();
 		this.products = data.product();
 	}
-
+	
 	public Users() {
 	}
 

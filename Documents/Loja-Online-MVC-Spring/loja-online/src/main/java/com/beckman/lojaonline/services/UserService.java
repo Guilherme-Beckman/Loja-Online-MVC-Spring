@@ -30,7 +30,6 @@ public Users insert(UserDTO data){
     shoppingCart.setUser(user);
     user.setCart(shoppingCart);
     repository.save(user);
-
     return user;
 }
 

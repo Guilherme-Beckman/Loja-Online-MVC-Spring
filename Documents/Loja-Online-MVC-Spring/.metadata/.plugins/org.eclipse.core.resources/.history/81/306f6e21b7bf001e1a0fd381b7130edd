@@ -1,0 +1,11 @@
+
+ALTER TABLE product
+  MODIFY COLUMN user_id BIGINT NOT NULL;
+
+  ALTER TABLE cart 
+    
+  MODIFY COLUMN user_id BIGINT NOT NULL;
+  
+  ALTER TABLE users 
+ 
+  MODIFY COLUMN cart_id BIGINT NOT NULL;

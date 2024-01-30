@@ -30,7 +30,6 @@ public Product(ProductDTO data) {
 	this.price = data.price();
 	this.user = data.user();
 	this.cart = data.cart();
-	// TODO Auto-generated constructor stub
 }
 public Product(Long id, String name, Integer price) {
 	this.id = id;

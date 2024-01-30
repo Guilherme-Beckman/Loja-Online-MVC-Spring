@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.cart.CartDTO;
+import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.services.CartService;
 
 @RestController
@@ -26,21 +27,6 @@ public CartController(CartService service) {
 	this.service = service;
 }
 
-@PostMapping
-public ResponseEntity<Cart> insert(@RequestBody CartDTO data) {
-	Cart newCart = this.service.insert(data);
-	return ResponseEntity.ok().body(newCart);
-}
-@PutMapping("/{id}")
-public ResponseEntity<Cart> update(@PathVariable("id") Long id,@RequestBody CartDTO data){
-	Cart cart = this.service.update(id, data);
-	return ResponseEntity.ok().body(cart);
-}
-@DeleteMapping("/{id}")
-public ResponseEntity<Cart> delete(@PathVariable("id")Long id) {
-	this.service.delete(id);
-	return ResponseEntity.noContent().build();
-}
 @GetMapping
 public ResponseEntity<List<Cart>> getAll(){
 	List<Cart> listAll = this.service.getAll();
@@ -52,4 +38,19 @@ public ResponseEntity<Optional<Cart>> findById(@PathVariable("id") Long id){
 	Optional cart = this.service.findById(id);
 	return ResponseEntity.ok().body(cart);
 	}
+@GetMapping("/products/{id}")
+public ResponseEntity<List<Product>> getAllProducts(@PathVariable("id") Long id){
+	List<Product> listProduct = this.service.getAllProducts(id);
+	return ResponseEntity.ok().body(listProduct);
+}
+@PostMapping("/products/{id}/{productId}")
+public ResponseEntity<Cart> addProductToCart(@PathVariable("id") Long id,@PathVariable("productId") Long productId ){
+	Cart cart = this.service.addProductToCart(id,productId);
+	return ResponseEntity.ok().body(cart);
+}
+@DeleteMapping("/products/{id}/{productId}")
+public ResponseEntity<Cart> deleteProductInCart(@PathVariable("id") Long id,@PathVariable("productId") Long productId ){
+	Cart cart = this.service.deleteProductInCart(id,productId);
+	return ResponseEntity.ok().body(cart);
+}
 }
