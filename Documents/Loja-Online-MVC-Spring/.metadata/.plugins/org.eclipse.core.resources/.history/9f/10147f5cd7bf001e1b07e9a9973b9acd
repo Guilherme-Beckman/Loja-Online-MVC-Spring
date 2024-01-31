@@ -1,0 +1,3 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/loja_mvc_online
+spring.datasource.username=beckman
+spring.datasource.password=1234

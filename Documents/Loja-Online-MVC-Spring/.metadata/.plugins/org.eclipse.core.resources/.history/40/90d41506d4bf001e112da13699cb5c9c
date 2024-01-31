@@ -1,0 +1,31 @@
+
+ALTER TABLE product
+  ALTER COLUMN user_id SET NOT NULL;
+  
+ALTER TABLE cart
+  ALTER COLUMN user_id SET NOT NULL;
+  
+ALTER TABLE users
+  ALTER COLUMN cart_id SET NOT NULL;
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE PRECISION NOT NULL
+);
+
+CREATE TABLE cart (
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+  

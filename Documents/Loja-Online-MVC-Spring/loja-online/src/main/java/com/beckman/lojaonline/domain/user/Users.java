@@ -27,7 +27,7 @@ public class Users {
 	@JoinColumn(name = "cart_id")
 	  @JsonManagedReference
 	private Cart cart;
-	
+	  @JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Product> products;
 

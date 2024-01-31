@@ -2,6 +2,7 @@ package com.beckman.lojaonline.domain.product;
 
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.user.Users;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ private String name;
 private Integer price;
 @ManyToOne
 @JoinColumn(name = "user_id")
+@JsonBackReference
 private Users user;
 
 @ManyToOne

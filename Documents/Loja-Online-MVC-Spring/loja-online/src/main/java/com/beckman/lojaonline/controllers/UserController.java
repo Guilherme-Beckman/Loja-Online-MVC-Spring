@@ -2,8 +2,6 @@ package com.beckman.lojaonline.controllers;
 
 import java.util.List;
 
-import java.util.Optional;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.beckman.lojaonline.domain.product.ProductDTO;
 import com.beckman.lojaonline.domain.user.UserDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.beckman.lojaonline.services.UserService;
@@ -47,8 +46,13 @@ private UserService service;
 		}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Users>> findById(@PathVariable("id") Long id){
-		Optional user = this.service.findById(id);
+	public ResponseEntity<Users> findById(@PathVariable("id") Long id){
+		Users user = this.service.findById(id);
 		return ResponseEntity.ok().body(user);
 		}
+	@PostMapping("/product/{id}")
+	public ResponseEntity<Users> addProduct(@PathVariable("id") Long id,@RequestBody ProductDTO data){
+		Users user = this.service.addProduct(id, data);
+		return ResponseEntity.ok().body(user);
+	}
 }

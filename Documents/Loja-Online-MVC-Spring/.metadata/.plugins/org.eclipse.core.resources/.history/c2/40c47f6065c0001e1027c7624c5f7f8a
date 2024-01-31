@@ -1,0 +1,6 @@
+ALTER TABLE users
+ADD COLUMN cart_id BIGINT;
+ALTER TABLE product
+ADD COLUMN user_id BIGINT;
+ALTER TABLE cart
+ADD COLUMN user_id BIGINT;

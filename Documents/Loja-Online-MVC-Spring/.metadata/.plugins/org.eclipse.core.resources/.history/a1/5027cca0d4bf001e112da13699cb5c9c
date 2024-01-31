@@ -1,0 +1,37 @@
+ 
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    cart_id BIGINT NOT NULL,
+    product_id BIGINT,
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product(id),
+    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES cart(id)
+);
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE PRECISION NOT NULL
+    user_id BIGINT NOT NULL,
+    cart_id BIGINT,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES cart(id);
+    
+);
+
+CREATE TABLE cart (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    product_id BIGINT,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product (id)
+);
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    
+);
+
+  
