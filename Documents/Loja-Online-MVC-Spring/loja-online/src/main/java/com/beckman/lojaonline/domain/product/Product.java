@@ -3,6 +3,7 @@ package com.beckman.lojaonline.domain.product;
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.user.Users;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,8 @@ private Users user;
 
 @ManyToOne
 @JoinColumn(name = "cart_id")
+@JsonBackReference
+@JsonIgnore
 private Cart cart;
 
 public Product(ProductDTO data) {

@@ -57,6 +57,7 @@ public Users findById(Long id){
 	Users user = this.repository.findById(id).orElseThrow(UserNotFoundException::new);
     return user;
 }
+@Transactional
 public Users addProduct(Long id, ProductDTO data) {
   Users user = this.findById(id);
  Product newProduct = new Product(data);

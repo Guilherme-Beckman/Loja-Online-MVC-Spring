@@ -45,7 +45,7 @@ public ResponseEntity<List<Product>> getAllProducts(@PathVariable("id") Long id)
 }
 @PutMapping("/products/{id}/{productId}")
 public ResponseEntity<Cart> addProductToCart(@PathVariable("id") Long id,@PathVariable("productId") Long productId ){
-	Cart cart = this.service.addProductToCart(id,productId);
+	Cart cart= this.service.addProductToCart(id,productId);
 	return ResponseEntity.ok().body(cart);
 }
 @DeleteMapping("/products/{id}/{productId}")

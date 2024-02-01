@@ -15,6 +15,8 @@ import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException;
 import com.beckman.lojaonline.repositories.CartRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CartService {
 private CartRepository repository;
@@ -44,6 +46,7 @@ public List<Cart> getAll(){
 public Optional<Cart> findById(Long id){
 	return this.repository.findById(id);
 }
+@Transactional
 public List<Product>  getAllProducts(Long id){
 	if (id !=null && id != 0) {
 		Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
@@ -60,6 +63,7 @@ public List<Product>  getAllProducts(Long id){
 	}
 	
 }
+@Transactional
 public Cart addProductToCart(Long id, Long productId){
 	if (id !=null && id != 0 && productId !=null && productId != 0) {
 			Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
@@ -68,12 +72,14 @@ public Cart addProductToCart(Long id, Long productId){
 			allProducts.add(product);
 			cart.setProductcs(allProducts);
 			this.repository.save(cart);
+			product.setCart(cart);
 			return cart;
 		}else {
 			throw new IdNotValidException();
 		}
 		
 	}
+@Transactional
 public Cart deleteProductInCart(Long id, Long productId){
 	if (id !=null && id != 0 && productId !=null && productId != 0) {
 		Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
