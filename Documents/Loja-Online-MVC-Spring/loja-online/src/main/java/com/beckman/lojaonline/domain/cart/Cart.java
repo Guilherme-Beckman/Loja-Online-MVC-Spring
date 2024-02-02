@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.user.Users;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -21,18 +21,18 @@ public class Cart {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-@JsonManagedReference
-private List<Product> products;
 
+private List<Product> products;
+@JsonIgnore
 @OneToOne( cascade = CascadeType.ALL)
 @JoinColumn(name = "user_id")
-@JsonBackReference
+
 private Users user;
 
 public Cart(CartDTO data) {
 	this.id = data.id();
-	this.products = data.produtcs();
-	this.user = data.userid();
+	this.products = data.products();
+	this.user = data.user();
 }
 
 

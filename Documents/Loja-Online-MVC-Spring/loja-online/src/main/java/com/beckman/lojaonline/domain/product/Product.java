@@ -20,12 +20,12 @@ private String name;
 private Integer price;
 @ManyToOne
 @JoinColumn(name = "user_id")
-@JsonBackReference
+@JsonIgnore
 private Users user;
 
 @ManyToOne
 @JoinColumn(name = "cart_id")
-@JsonBackReference
+
 @JsonIgnore
 private Cart cart;
 

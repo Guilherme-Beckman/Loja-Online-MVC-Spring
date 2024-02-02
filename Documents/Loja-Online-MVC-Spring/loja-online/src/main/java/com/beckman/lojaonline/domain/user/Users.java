@@ -22,12 +22,13 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String password;
+	private String password; 
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
-	  @JsonManagedReference
+	 
 	private Cart cart;
-	  @JsonManagedReference
+	  
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Product> products;
 
@@ -36,7 +37,7 @@ public class Users {
 		this.name = data.name();
 		this.password = data.password();
 		this.cart = data.cart();
-		this.products = data.product();
+		this.products = data.products();
 	}
 	
 	public Users() {

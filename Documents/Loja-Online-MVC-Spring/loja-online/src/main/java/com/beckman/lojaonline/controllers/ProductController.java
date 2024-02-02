@@ -31,11 +31,6 @@ public ResponseEntity<List<Product>> getAll(){
 	return ResponseEntity.ok().body(listAll);
 	}
 
-@PostMapping
-public ResponseEntity<Product> insert(@RequestBody ProductDTO data) {
-	Product newProduct = this.service.insert(data);
-	return ResponseEntity.ok().body(newProduct);
-}
 @PutMapping("/{id}")
 public ResponseEntity<Product> update(@PathVariable("id") Long id,@RequestBody ProductDTO data){
 	Product product = this.service.update(id, data);

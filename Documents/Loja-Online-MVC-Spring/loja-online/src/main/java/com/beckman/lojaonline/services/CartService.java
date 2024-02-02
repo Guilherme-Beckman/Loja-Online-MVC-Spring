@@ -30,8 +30,8 @@ public CartService(CartRepository repository) {
 
 public Cart update(Long id, CartDTO data) {
 	Cart cart = this.repository.findById(id).orElseThrow(CartNotFoundException::new);
-	if(!(data.produtcs()==null)) {
-		cart.setProductcs(data.produtcs());
+	if(!(data.products()==null)) {
+		cart.setProductcs(data.products());
 	};
 	this.repository.save(cart);
 	return cart;	
