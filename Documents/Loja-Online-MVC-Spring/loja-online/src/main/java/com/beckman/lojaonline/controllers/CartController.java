@@ -27,7 +27,7 @@ public CartController(CartService service) {
 	this.service = service;
 }
 
-@GetMapping
+@GetMapping("/all")
 public ResponseEntity<List<Cart>> getAll(){
 	List<Cart> listAll = this.service.getAll();
 	return ResponseEntity.ok().body(listAll);

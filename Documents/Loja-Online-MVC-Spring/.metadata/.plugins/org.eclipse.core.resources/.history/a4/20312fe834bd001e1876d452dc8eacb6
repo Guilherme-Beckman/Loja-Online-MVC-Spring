@@ -1,7 +1,0 @@
-package com.beckman.lojaonline.domain.product.exceptions;
-
-public class OrderNotFoundException extends RuntimeException {
-	public OrderNotFoundException() {
-		super("Order not found");
-	}
-}

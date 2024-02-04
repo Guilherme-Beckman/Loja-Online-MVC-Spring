@@ -1,0 +1,5 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+public class HomeController {
+
+}

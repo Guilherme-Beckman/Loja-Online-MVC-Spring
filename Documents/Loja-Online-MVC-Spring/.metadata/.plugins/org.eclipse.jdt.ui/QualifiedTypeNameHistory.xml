@@ -6,17 +6,21 @@
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.apache.catalina.connector.Response"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.services.CartService"/>
     <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.services.ProductService"/>
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.AutoConfigureOrder"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.model.Model"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.services.ProductService"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
