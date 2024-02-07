@@ -2,14 +2,15 @@ package com.beckman.lojaonline.domain.product;
 
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.user.Users;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 @Entity
 public class Product {
@@ -19,6 +20,10 @@ private Long id;
 private String name;
 private Integer price;
 private String description;
+@Column(name = "imagedata")
+@Lob
+private byte[] imageData;
+
 @ManyToOne
 @JoinColumn(name = "user_id")
 @JsonIgnore
@@ -37,13 +42,19 @@ public Product(ProductDTO data) {
 	this.description = data.description();
 	this.user = data.user();
 	this.cart = data.cart();
+	this.imageData = data.imageData();
 }
-public Product(Long id, String name, Integer price) {
+
+public Product(Long id, String name, Integer price, String description, byte[] imageData, Users user, Cart cart) {
 	this.id = id;
 	this.name = name;
 	this.price = price;
 	this.description = description;
+	this.imageData = imageData;
+	this.user = user;
+	this.cart = cart;
 }
+
 public Product() {
 }
 public Long getId() {
@@ -81,6 +92,12 @@ public String getDescription() {
 }
 public void setDescription(String description) {
 	this.description = description;
+}
+public byte[] getImageData() {
+	return imageData;
+}
+public void setImageData(byte[] imageData) {
+	this.imageData = imageData;
 }
 
 

@@ -22,4 +22,5 @@ public String home(Model model) {
 	 model.addAttribute("products", allProducts);
 	return ("products-list");
 }
+
 }

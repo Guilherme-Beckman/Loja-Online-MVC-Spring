@@ -1,8 +1,14 @@
 package com.beckman.lojaonline.controllers;
+import org.springframework.http.HttpHeaders;
+
+import org.springframework.http.MediaType;
+
+
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,4 +58,11 @@ public ResponseEntity<Optional<Product>> findById(@PathVariable("id") Long id){
 	Optional product = this.service.findById(id);
 	return ResponseEntity.ok().body(product);
 	}
+@GetMapping("/img/{id}")
+public ResponseEntity<byte []> showImg(@PathVariable Long id){
+Optional<Product> product = this.service.findById(id);
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.IMAGE_JPEG); 
+return new ResponseEntity<>(product.get().getImageData(), headers, HttpStatus.OK);
+}
 }
