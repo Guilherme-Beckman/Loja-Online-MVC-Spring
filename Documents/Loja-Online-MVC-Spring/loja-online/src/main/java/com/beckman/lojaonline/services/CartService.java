@@ -11,6 +11,7 @@ import com.beckman.lojaonline.domain.cart.CartDTO;
 import com.beckman.lojaonline.domain.cart.exceptions.CartNotFoundException;
 import com.beckman.lojaonline.domain.cart.exceptions.IdNotValidException;
 import com.beckman.lojaonline.domain.cart.exceptions.ProductsListEmptyException;
+import com.beckman.lojaonline.domain.cartitem.CartItem;
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException;
 import com.beckman.lojaonline.repositories.CartRepository;
@@ -30,8 +31,8 @@ public CartService(CartRepository repository) {
 
 public Cart update(Long id, CartDTO data) {
 	Cart cart = this.repository.findById(id).orElseThrow(CartNotFoundException::new);
-	if(!(data.products()==null)) {
-		cart.setProductcs(data.products());
+	if(!(data.itens()==null)) {
+		cart.setItens(data.itens());
 	};
 	this.repository.save(cart);
 	return cart;	
@@ -47,10 +48,10 @@ public Optional<Cart> findById(Long id){
 	return this.repository.findById(id);
 }
 @Transactional
-public List<Product>  getAllProducts(Long id){
+public List<CartItem>  getAllProducts(Long id){
 	if (id !=null && id != 0) {
 		Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
-		List<Product> allProducts = cart.getProductcs();
+		List<CartItem> allProducts = cart.getItens();
 		if(!allProducts.isEmpty()) {
 			return allProducts;
 		}else {
@@ -63,14 +64,14 @@ public List<Product>  getAllProducts(Long id){
 	}
 	
 }
-@Transactional
+/*@Transactional
 public Cart addProductToCart(Long id, Long productId){
 	if (id !=null && id != 0 && productId !=null && productId != 0) {
 			Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
-			Product product = service.findById(productId).orElseThrow(ProductNotFoundException::new);
-			List<Product> allProducts = cart.getProductcs();
+			CartItem product = service.findById(productId).orElseThrow(ProductNotFoundException::new);
+			List<CartItem> allProducts = cart.getItens();
 			allProducts.add(product);
-			cart.setProductcs(allProducts);
+			cart.getItens(allProducts);
 			this.repository.save(cart);
 			product.setCart(cart);
 			return cart;
@@ -78,16 +79,16 @@ public Cart addProductToCart(Long id, Long productId){
 			throw new IdNotValidException();
 		}
 		
-	}
+	}*/
 @Transactional
 public Cart deleteProductInCart(Long id, Long productId){
 	if (id !=null && id != 0 && productId !=null && productId != 0) {
 		Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
 		Product product = service.findById(productId).orElseThrow(ProductNotFoundException::new);
-		List<Product> allProducts = cart.getProductcs();
+		List<CartItem> allProducts = cart.getItens();
 	       if (allProducts.contains(product)) {
 	            allProducts.remove(product);
-	            cart.setProductcs(allProducts);
+	            cart.setItens(allProducts);
 	            repository.save(cart);
 	            return cart;
 	        } else {

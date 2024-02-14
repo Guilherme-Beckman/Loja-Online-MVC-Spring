@@ -19,24 +19,20 @@ private Long id;
 private String name;
 private Integer price;
 private String description;
+private Long rating;
 @ManyToOne
 @JoinColumn(name = "user_id")
 @JsonIgnore
 private Users user;
 
-@ManyToOne
-@JoinColumn(name = "cart_id")
-
-@JsonIgnore
-private Cart cart;
 
 public Product(ProductDTO data) {
 	this.id = data.id();
 	this.name = data.name();
 	this.price = data.price();
 	this.description = data.description();
-	this.user = data.user();
-	this.cart = data.cart();
+
+
 }
 public Product(Long id, String name, Integer price) {
 	this.id = id;
@@ -64,18 +60,8 @@ public Integer getPrice() {
 public void setPrice(Integer price) {
 	this.price = price;
 }
-public Users getUser() {
-	return user;
-}
-public void setUser(Users user) {
-	this.user = user;
-}
-public Cart getCart() {
-	return cart;
-}
-public void setCart(Cart cart) {
-	this.cart = cart;
-}
+
+
 public String getDescription() {
 	return description;
 }

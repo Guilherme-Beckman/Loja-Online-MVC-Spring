@@ -1,4 +1,4 @@
-package com.beckman.lojaonline.services;
+/*package com.beckman.lojaonline.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,4 +68,4 @@ public Users addProduct(Long id, ProductDTO data) {
  repository.save(user);
  return user;
 }
-}
+}*/

@@ -1,4 +1,4 @@
-package com.beckman.lojaonline.controllers;
+/*package com.beckman.lojaonline.controllers;
 
 import java.util.List;
 
@@ -56,3 +56,4 @@ private UserService service;
 		return ResponseEntity.ok().body(user);
 	}
 }
+*/

@@ -3,6 +3,6 @@ package com.beckman.lojaonline.domain.product;
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.user.Users;
 
-public record ProductDTO (Long id, String name, Integer price, String description, Users user, Cart cart){
+public record ProductDTO (Long id, String name, Integer price, String description){
 
 }

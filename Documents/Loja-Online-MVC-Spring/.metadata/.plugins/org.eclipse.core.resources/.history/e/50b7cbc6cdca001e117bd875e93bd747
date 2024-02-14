@@ -1,0 +1,5 @@
+ALTER TABLE product 
+DROP COLUMN cart_id;
+ALTER TABLE cart
+DROP COLUMN product_id;
+

@@ -23,23 +23,29 @@ public class Users {
 	private Long id;
 	private String name;
 	private String password; 
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id")
-	 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Cart cart;
-	  
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Product> products;
+	private List<Product> product;
 
 	public Users(UserDTO data) {
 		this.id = data.id();
 		this.name = data.name();
 		this.password = data.password();
 		this.cart = data.cart();
-		this.products = data.products();
+		this.product = data.products();
 	}
 	
+	
+	public Users(Long id, String name, String password, Cart cart, List<Product> products) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.cart = cart;
+		this.product = products;
+	}
+
+
 	public Users() {
 	}
 
@@ -67,22 +73,36 @@ public class Users {
 		this.password = password;
 	}
 
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	public Cart getCart() {
 		return cart;
 	}
 
+
 	public void setCart(Cart cart) {
 		this.cart = cart;
-		  
 	}
 
-	public List<Product> getProduct() {
-		return products;
+
+	public List<Product> getProducts() {
+		return product;
 	}
 
-	public void setProduct(List<Product> product) {
-		this.products = product;
+
+	public void setProducts(List<Product> products) {
+		this.product = products;
 	}
-	
+
+
 	
 }

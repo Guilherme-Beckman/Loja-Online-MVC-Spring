@@ -7,7 +7,10 @@ CREATE TABLE users (
 CREATE TABLE product (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    price DOUBLE PRECISION NOT NULL
+    price DOUBLE PRECISION NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    rating BIGINT
+    
 );
 
 CREATE TABLE cart (
@@ -15,7 +18,12 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE orders (
-    id SERIAL PRIMARY KEY,
-    user_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    id SERIAL PRIMARY KEY
 );
+CREATE TABLE cart_item(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE PRECISION NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    rating BIGINT
+   );

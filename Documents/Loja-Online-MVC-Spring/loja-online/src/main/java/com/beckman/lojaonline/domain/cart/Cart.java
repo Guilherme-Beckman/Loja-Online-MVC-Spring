@@ -2,10 +2,9 @@ package com.beckman.lojaonline.domain.cart;
 
 import java.util.List;
 
-import com.beckman.lojaonline.domain.product.Product;
+import com.beckman.lojaonline.domain.cartitem.CartItem;
 import com.beckman.lojaonline.domain.user.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -20,29 +19,28 @@ public class Cart {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
-@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-
-private List<Product> products;
-@JsonIgnore
-@OneToOne( cascade = CascadeType.ALL)
+@OneToOne
 @JoinColumn(name = "user_id")
-
+@JsonIgnore
 private Users user;
+@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+private List<CartItem> itens;
 
 public Cart(CartDTO data) {
 	this.id = data.id();
-	this.products = data.products();
 	this.user = data.user();
+	this.itens = data.itens();
 }
 
 
 public Cart() {
 	
 }
-public Cart(Long id, List<Product> productcs, Users userid) {
+
+public Cart(Long id, Users user, List<CartItem> itens) {
 	this.id = id;
-	this.products = productcs;
-	this.user = userid;
+	this.user = user;
+	this.itens = itens;
 }
 
 
@@ -56,24 +54,25 @@ public void setId(Long id) {
 }
 
 
-public List<Product> getProductcs() {
-	return products;
-}
-
-
-public void setProductcs(List<Product> productcs) {
-	this.products = productcs;
-}
-
-
 public Users getUser() {
 	return user;
 }
 
 
-public void setUser(Users userid) {
-	this.user = userid;
+public void setUser(Users user) {
+	this.user = user;
 }
+
+
+public List<CartItem> getItens() {
+	return itens;
+}
+
+
+public void setItens(List<CartItem> itens) {
+	this.itens = itens;
+}
+
 
 
 }
