@@ -1,6 +1,6 @@
 
 ALTER TABLE users
-ADD COLUMN cart_id BIGINT NOT NULL,
+ADD COLUMN cart_id BIGINT,
 ADD COLUMN product_id BIGINT,
 ADD CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product(id),
 ADD CONSTRAINT fk_cart FOREIGN KEY (cart_id) REFERENCES cart(id);

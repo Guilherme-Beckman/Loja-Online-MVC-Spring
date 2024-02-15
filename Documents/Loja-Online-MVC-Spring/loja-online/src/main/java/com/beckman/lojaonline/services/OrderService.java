@@ -26,7 +26,7 @@ public Order insert(OrderDTO data){
 
 public Order update(Long id, OrderDTO data) {
 	Order order = this.repository.findById(id).orElseThrow(OrderNotFoundException::new);
-	if(!(data.products()==null)) {
+	if(!(data.()==null)) {
 		order.setProducts(data.products());
 	};
 	this.repository.save(order);

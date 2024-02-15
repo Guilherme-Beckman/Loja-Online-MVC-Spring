@@ -68,6 +68,18 @@ public String getDescription() {
 public void setDescription(String description) {
 	this.description = description;
 }
+public Long getRating() {
+	return rating;
+}
+public void setRating(Long rating) {
+	this.rating = rating;
+}
+public Users getUser() {
+	return user;
+}
+public void setUser(Users user) {
+	this.user = user;
+}
 
 
 }

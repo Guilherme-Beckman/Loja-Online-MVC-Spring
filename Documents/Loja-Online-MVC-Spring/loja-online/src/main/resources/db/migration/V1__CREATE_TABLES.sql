@@ -25,5 +25,6 @@ CREATE TABLE cart_item(
     name VARCHAR(255) NOT NULL,
     price DOUBLE PRECISION NOT NULL,
     description VARCHAR(255) NOT NULL,
-    rating BIGINT
+    rating BIGINT,
+    quantity INT
    );

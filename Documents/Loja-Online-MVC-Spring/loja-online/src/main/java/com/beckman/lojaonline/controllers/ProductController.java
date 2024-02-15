@@ -49,7 +49,7 @@ public ResponseEntity<Product> delete(@PathVariable("id")Long id) {
 
 @GetMapping("/{id}")
 public ResponseEntity<Optional<Product>> findById(@PathVariable("id") Long id){
-	Optional product = this.service.findById(id);
+	Optional<Product> product = this.service.findById(id);
 	return ResponseEntity.ok().body(product);
 	}
 }

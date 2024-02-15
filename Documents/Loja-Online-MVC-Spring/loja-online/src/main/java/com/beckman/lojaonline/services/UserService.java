@@ -1,4 +1,4 @@
-/*package com.beckman.lojaonline.services;
+package com.beckman.lojaonline.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -62,10 +62,10 @@ public Users addProduct(Long id, ProductDTO data) {
   Users user = this.findById(id);
  Product newProduct = new Product(data);
  newProduct.setUser(user);
- List<Product> list = user.getProduct();
+ List<Product> list = user.getProducts();
  list.add(newProduct);
- user.setProduct(list);
+ user.setProducts(list);
  repository.save(user);
  return user;
 }
-}*/
+}
