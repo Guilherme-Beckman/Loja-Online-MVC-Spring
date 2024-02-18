@@ -19,7 +19,8 @@ public class ProductThymeleafController {
 @GetMapping
 public String home(Model model) {
 	List<Product> allProducts = this.service.getAll();
-	 model.addAttribute("products", allProducts);
+	 model.addAttribute("product", allProducts);
 	return ("products-list");
 }
+
 }

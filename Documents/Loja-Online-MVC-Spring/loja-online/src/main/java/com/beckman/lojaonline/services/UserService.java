@@ -3,7 +3,6 @@ package com.beckman.lojaonline.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beckman.lojaonline.domain.cart.Cart;
@@ -19,7 +18,6 @@ import jakarta.transaction.Transactional;
 @Service
 public class UserService {
 private UserRepository repository;
-@Autowired
 public UserService(UserRepository repository) {
 	this.repository = repository;
 }

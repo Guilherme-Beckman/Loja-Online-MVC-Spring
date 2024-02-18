@@ -30,12 +30,12 @@ private UserService service;
 		return ResponseEntity.ok().body(newUser);
 	}
 	@PutMapping("/{id}")
-	public ResponseEntity<Users> update(@PathVariable("id") Long id,@RequestBody UserDTO data){
+	public ResponseEntity<Users> update(@PathVariable Long id,@RequestBody UserDTO data){
 		Users user = this.service.update(id, data);
 		return ResponseEntity.ok().body(user);
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Users> delete(@PathVariable("id")Long id) {
+	public ResponseEntity<Users> delete(@PathVariable Long id) {
 		this.service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
@@ -46,12 +46,12 @@ private UserService service;
 		}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Users> findById(@PathVariable("id") Long id){
+	public ResponseEntity<Users> findById(@PathVariable Long id){
 		Users user = this.service.findById(id);
 		return ResponseEntity.ok().body(user);
 		}
 	@PostMapping("/product/{id}")
-	public ResponseEntity<Users> addProduct(@PathVariable("id") Long id,@RequestBody ProductDTO data){
+	public ResponseEntity<Users> addProduct(@PathVariable Long id,@RequestBody ProductDTO data){
 		Users user = this.service.addProduct(id, data);
 		return ResponseEntity.ok().body(user);
 	}

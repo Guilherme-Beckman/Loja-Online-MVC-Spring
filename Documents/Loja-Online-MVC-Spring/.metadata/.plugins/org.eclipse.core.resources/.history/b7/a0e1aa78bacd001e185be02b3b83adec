@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Loja MVC</title>
+</head>
+<body>
+    <div class="nav">
+<div class="circle">
+       <i class="ri-store-line"></i>
+</div>
+     
+        <h3>LOJA COM PRODUTOS INCRIVEIS</h3>
+
+        <div class="search">
+            <input type="text" placeholder="Buscar produtos...">
+            <button type="submit"> <i class="ri-search-line"></i></button>
+  </div>  <div class="home">
+<a href="#">
+    <i class="ri-home-4-line"></i>
+</a>
+        
+
+   </div>
+       
+    </div>
+    <div class="nav2">
+        <div class="back-circle"> 
+        <ul>
+            <li><span><a href="#"></a>Crie sua conta</span></li>
+            <li>|</li>
+            <li><span><a href="#"></a>Entre</span></li>
+            <li>|</li>
+            <li><a href="#"></a><i class="ri-shopping-cart-line"></i></li>
+        </ul>
+   
+    </div>
+        
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="cart-container">
+
+        <div th:each="product : ${product}" class="cart">
+            <img th:src="" alt="Product Image">
+            <h3 th:text="${product.name}"></h3>
+            <h2 th:text="${product.price}"></h2>
+        </div>
+
+    </div>
+    
+</body>
+</html>

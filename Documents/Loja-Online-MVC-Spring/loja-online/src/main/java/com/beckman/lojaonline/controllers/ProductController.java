@@ -36,19 +36,19 @@ public ResponseEntity< List<Product> > getAll(Model model) {
 
 
 @PutMapping("/{id}")
-public ResponseEntity<Product> update(@PathVariable("id") Long id,@RequestBody ProductDTO data){
+public ResponseEntity<Product> update(@PathVariable Long id,@RequestBody ProductDTO data){
 	Product product = this.service.update(id, data);
 	return ResponseEntity.ok().body(product);
 }
 @DeleteMapping("/{id}")
-public ResponseEntity<Product> delete(@PathVariable("id")Long id) {
+public ResponseEntity<Product> delete(@PathVariable Long id) {
 	this.service.delete(id);
 	return ResponseEntity.noContent().build();
 }
 
 
 @GetMapping("/{id}")
-public ResponseEntity<Optional<Product>> findById(@PathVariable("id") Long id){
+public ResponseEntity<Optional<Product>> findById(@PathVariable Long id){
 	Optional<Product> product = this.service.findById(id);
 	return ResponseEntity.ok().body(product);
 	}

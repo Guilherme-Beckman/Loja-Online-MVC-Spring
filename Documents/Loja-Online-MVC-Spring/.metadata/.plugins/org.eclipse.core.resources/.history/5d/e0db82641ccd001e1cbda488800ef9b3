@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Lista de produtos</title>
+</head>
+<body>
+<div class="titulo" >
+     <h1>Lista de Produtos</h1>
+</div>
+   <!-- ... Seu código HTML existente ... -->
+
+<script>
+    const adicionarAoCarrinho = (productId) => {
+        fetch('/api/cart/products/' + productId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Produto adicionado ao carrinho com sucesso!');
+            // Você pode realizar ações adicionais após adicionar ao carrinho, se necessário
+        })
+        .catch(error => {
+            console.error('Erro ao adicionar produto ao carrinho:', error);
+        });
+    };
+</script>
+
+<!-- ... Seu código HTML existente ... -->
+
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Avaliação</th>              
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                 <td th:text="${product.description}"></td>
+                  <td th:text="${product.rating}"></td>
+                    <td>
+            <button onclick="adicionarAoCarrinho(${product.id})">Adicionar ao Carrinho</button>
+        </td>
+              
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+</body>
+</html>

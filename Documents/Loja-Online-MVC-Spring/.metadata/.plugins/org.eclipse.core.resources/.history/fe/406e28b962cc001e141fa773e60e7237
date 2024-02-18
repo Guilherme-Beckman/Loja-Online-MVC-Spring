@@ -1,0 +1,29 @@
+
+body{
+    background-color: azure;
+}
+.titulo h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    margin: 0;
+    background-color:rgb(179, 245, 240);
+}
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+
+.table th, .table td {
+    border: 2px solid black;
+    padding: 1rem 2rem;
+    
+}
+
+.table th {
+    background-color: rgb(179, 245, 240);
+    color: black;
+    text-align: center; 
+}

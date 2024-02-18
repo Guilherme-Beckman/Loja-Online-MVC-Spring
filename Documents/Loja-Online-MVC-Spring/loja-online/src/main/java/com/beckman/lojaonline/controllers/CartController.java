@@ -3,7 +3,6 @@ package com.beckman.lojaonline.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,6 @@ public class CartController {
     private CartService service;
     private CartItemService cartItemService;
 
-    @Autowired
     public CartController(CartService service, CartItemService cartItemService) {
         this.service = service;
         this.cartItemService = cartItemService;
@@ -37,22 +35,22 @@ public ResponseEntity<List<Cart>> getAll(){
 	}
 
 @GetMapping("/{id}")
-public ResponseEntity<Optional<Cart>> findById(@PathVariable("id") Long id){
-	Optional cart = this.service.findById(id);
+public ResponseEntity<Optional<Cart>> findById(@PathVariable Long id){
+	Optional<Cart> cart = this.service.findById(id);
 	return ResponseEntity.ok().body(cart);
 	}
 @GetMapping("/products/{id}")
-public ResponseEntity<List<CartItem>> getAllProducts(@PathVariable("id") Long id){
+public ResponseEntity<List<CartItem>> getAllProducts(@PathVariable Long id){
 	List<CartItem> listProduct = this.service.getAllProducts(id);
 	return ResponseEntity.ok().body(listProduct);
 }
 @PutMapping("/products/{id}/{productId}")
-public ResponseEntity<Cart> addProductToCart(@PathVariable("id") Long id,@PathVariable("productId") Long productId ){
+public ResponseEntity<Cart> addProductToCart(@PathVariable Long id,@PathVariable Long productId ){
 	Cart cart= this.cartItemService.addItenOnCart(id,productId).getCart();
 	return ResponseEntity.ok().body(cart);
 }
 @DeleteMapping("/products/{id}/{productId}")
-public ResponseEntity<Cart> deleteProductInCart(@PathVariable("id") Long id,@PathVariable("productId") Long productId ){
+public ResponseEntity<Cart> deleteProductInCart(@PathVariable Long id,@PathVariable Long productId ){
 	Cart cart = this.service.deleteProductInCart(id,productId);
 	return ResponseEntity.ok().body(cart);
 }
