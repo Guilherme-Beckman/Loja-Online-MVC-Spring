@@ -16,6 +16,7 @@ import com.beckman.lojaonline.domain.user.RegisterDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.beckman.lojaonline.infra.security.TokenService;
 import com.beckman.lojaonline.repositories.UserRepository;
+import com.beckman.lojaonline.services.UserService;
 
 import jakarta.validation.Valid;
 
@@ -26,9 +27,21 @@ public class AuthenticationController {
 	@Autowired 
 	UserRepository repository;
 	@Autowired
+	UserService userService;
+	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired 
 	private TokenService tokenService;
+
+@PostMapping("/register")
+public ResponseEntity register (@RequestBody @Valid RegisterDTO data) {
+	if (this.repository.findByName(data.name()) != null) {
+		return ResponseEntity.badRequest().build();
+	}else {
+		Users user = this.userService.insert(data);
+		return ResponseEntity.ok().body(user);
+	}
+}
 	@PostMapping("/login")
 	public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
 		var usernamePassword= new UsernamePasswordAuthenticationToken(data.name(), data.password());
@@ -36,16 +49,4 @@ public class AuthenticationController {
 		var token = tokenService.generateToken((Users) auth.getPrincipal());
 		return ResponseEntity.ok(new LoginResponseDTO(token));
 	}
-@PostMapping("/register")
-public ResponseEntity register (@RequestBody @Valid RegisterDTO data) {
-	if (this.repository.findByName(data.name()) != null) {
-		return ResponseEntity.badRequest().build();
-	}else {
-		String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-		Users newUser = new Users(data.name(), encryptedPassword, data.role());
-		this.repository.save(newUser);
-		return ResponseEntity.ok().build();
-	}
-}
-
 }

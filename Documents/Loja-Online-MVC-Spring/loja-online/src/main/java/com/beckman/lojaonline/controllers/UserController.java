@@ -24,11 +24,6 @@ private UserService service;
 		this.service = service;
 	}
 
-	@PostMapping
-	public ResponseEntity<Users> insert(@RequestBody UserDTO data) {
-		Users newUser = this.service.insert(data);
-		return ResponseEntity.ok().body(newUser);
-	}
 	@PutMapping("/{id}")
 	public ResponseEntity<Users> update(@PathVariable Long id,@RequestBody UserDTO data){
 		Users user = this.service.update(id, data);

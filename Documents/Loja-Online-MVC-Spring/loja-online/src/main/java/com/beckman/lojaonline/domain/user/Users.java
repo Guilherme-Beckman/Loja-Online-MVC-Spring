@@ -40,6 +40,12 @@ public class Users implements UserDetails {
 		this.product = data.products();
 		this.role = data.role();
 	}
+	public Users(RegisterDTO data) {
+		this.name = data.name();
+		this.password = data.password();
+		this.role = data.role();
+	}
+	
 	
 	
 	public Users(Long id, String name, String password, Cart cart, List<Product> products, UserRole role) {

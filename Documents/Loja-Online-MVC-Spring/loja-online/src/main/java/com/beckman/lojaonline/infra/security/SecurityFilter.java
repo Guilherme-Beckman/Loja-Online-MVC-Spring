@@ -29,9 +29,10 @@ UserRepository repository;
 		if (token != null) {
 			var name = tokenService.validateToken(token);
 			UserDetails user = repository.findByName(name);
-			
-			var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+			if (user != null) {
+				var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
 		}else {
 			filterChain.doFilter(request, response);
 		}

@@ -1,13 +1,14 @@
 package com.beckman.lojaonline.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.ProductDTO;
+import com.beckman.lojaonline.domain.user.RegisterDTO;
 import com.beckman.lojaonline.domain.user.UserDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException;
@@ -23,8 +24,10 @@ public UserService(UserRepository repository) {
 }
 
 @Transactional
-public Users insert(UserDTO data){
+public Users insert(RegisterDTO data){
+	String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 	   Users user = new Users(data);
+	   user.setPassword(encryptedPassword);
     Cart shoppingCart = new Cart();
     shoppingCart.setUser(user);
     user.setCart(shoppingCart);
