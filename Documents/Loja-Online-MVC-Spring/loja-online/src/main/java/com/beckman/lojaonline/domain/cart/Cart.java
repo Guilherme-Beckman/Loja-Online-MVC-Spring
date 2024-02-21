@@ -23,7 +23,7 @@ private Long id;
 @JoinColumn(name = "user_id")
 @JsonIgnore
 private Users user;
-@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "cart")
 private List<CartItem> itens;
 
 public Cart(CartDTO data) {

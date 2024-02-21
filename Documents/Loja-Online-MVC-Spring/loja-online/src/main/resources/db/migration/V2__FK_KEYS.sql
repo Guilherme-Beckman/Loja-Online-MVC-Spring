@@ -1,4 +1,3 @@
-
 ALTER TABLE users
 ADD COLUMN cart_id BIGINT,
 ADD COLUMN product_id BIGINT,

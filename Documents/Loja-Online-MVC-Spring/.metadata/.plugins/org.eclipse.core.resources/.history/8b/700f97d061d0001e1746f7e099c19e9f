@@ -12,20 +12,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 @Entity
-public class Order {
+public class Orders {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
-public Order(OrderDTO data) {
+public Orders(OrderDTO data) {
 	this.id = data.id();
 }
 
-public Order(Long id, Users user, List<Product> products) {
+public Orders(Long id, Users user, List<Product> products) {
 	this.id = id;
 }
 
-public Order() {
+public Orders() {
 
 }
 

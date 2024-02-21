@@ -32,6 +32,8 @@ UserRepository repository;
 			if (user != null) {
 				var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			}else {
+				filterChain.doFilter(request, response);
 			}
 		}else {
 			filterChain.doFilter(request, response);

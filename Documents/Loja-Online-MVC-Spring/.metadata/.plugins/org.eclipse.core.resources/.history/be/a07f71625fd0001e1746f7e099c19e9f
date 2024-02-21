@@ -1,0 +1,34 @@
+-- MIGRAÇÃO PARA O BANCO H2
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    rating BIGINT
+);
+
+CREATE TABLE cart (
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE "orders" (
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE cart_item (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    rating BIGINT,
+    quantity INT
+);
+
