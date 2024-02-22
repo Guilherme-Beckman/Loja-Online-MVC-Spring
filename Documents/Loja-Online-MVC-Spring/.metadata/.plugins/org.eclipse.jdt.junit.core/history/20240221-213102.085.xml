@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="loja-online (1)" project="loja-online" tests="3" started="3" failures="0" errors="1" ignored="0">
+  <testsuite name="com.beckman.lojaonline.services.UserServiceTest" time="2.462" displayname="UserServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]">
+    <testcase name="testInsertNoSucess" classname="com.beckman.lojaonline.services.UserServiceTest" time="2.205" displayname="Should not insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertNoSucess()]"/>
+    <testcase name="testInsertSucess" classname="com.beckman.lojaonline.services.UserServiceTest" time="0.255" displayname="Should insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertSucess()]">
+      <error>java.lang.NullPointerException: Cannot invoke "com.beckman.lojaonline.repositories.UserRepository.save(Object)" because "this.repository" is null
+	at com.beckman.lojaonline.services.UserService.insert(UserService.java:38)
+	at com.beckman.lojaonline.services.UserServiceTest.testInsertSucess(UserServiceTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.025" displayname="LojaOnlineApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]">
+    <testcase name="contextLoads" classname="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.025" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

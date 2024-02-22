@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="loja-online (1)" project="loja-online" tests="3" started="3" failures="1" errors="0" ignored="0">
+  <testsuite name="com.beckman.lojaonline.services.UserServiceTest" time="1.756" displayname="UserServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]">
+    <testcase name="testInsertNoSucess" classname="com.beckman.lojaonline.services.UserServiceTest" time="1.575" displayname="Should not insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertNoSucess()]">
+      <failure>
+        <expected>null</expected>
+        <actual>com.beckman.lojaonline.domain.user.Users@1028a747</actual>
+        org.opentest4j.AssertionFailedError: 
+expected: null
+ but was: com.beckman.lojaonline.domain.user.Users@1028a747
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at com.beckman.lojaonline.services.UserServiceTest.testInsertNoSucess(UserServiceTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+
+      </failure>
+    </testcase>
+    <testcase name="testInsertSucess" classname="com.beckman.lojaonline.services.UserServiceTest" time="0.179" displayname="Should insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertSucess()]"/>
+  </testsuite>
+  <testsuite name="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.03" displayname="LojaOnlineApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]">
+    <testcase name="contextLoads" classname="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.03" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

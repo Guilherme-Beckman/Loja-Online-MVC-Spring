@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="loja-online (1)" project="loja-online" tests="3" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="com.beckman.lojaonline.services.UserServiceTest" incomplete="true" displayname="UserServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]">
+    <error>java.lang.IllegalStateException: Configuration error: found multiple declarations of @BootstrapWith for test class [com.beckman.lojaonline.services.UserServiceTest]: [@org.springframework.test.context.BootstrapWith(value=org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper.class), @org.springframework.test.context.BootstrapWith(value=org.springframework.boot.test.context.SpringBootTestContextBootstrapper.class)]
+	at org.springframework.test.context.BootstrapUtils.resolveExplicitTestContextBootstrapper(BootstrapUtils.java:194)
+	at org.springframework.test.context.BootstrapUtils.resolveTestContextBootstrapper(BootstrapUtils.java:150)
+	at org.springframework.test.context.BootstrapUtils.resolveTestContextBootstrapper(BootstrapUtils.java:126)
+	at org.springframework.test.context.TestContextManager.&lt;init&gt;(TestContextManager.java:126)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.getTestContextManager(SpringExtension.java:366)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeAll(SpringExtension.java:131)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+</error>
+    <testcase name="testInsertNoSucess" classname="com.beckman.lojaonline.services.UserServiceTest" incomplete="true" displayname="Should not insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertNoSucess()]"/>
+    <testcase name="testInsertSucess" classname="com.beckman.lojaonline.services.UserServiceTest" incomplete="true" displayname="Should insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertSucess()]"/>
+  </testsuite>
+  <testsuite name="com.beckman.lojaonline.LojaOnlineApplicationTests" time="2.443" displayname="LojaOnlineApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]">
+    <testcase name="contextLoads" classname="com.beckman.lojaonline.LojaOnlineApplicationTests" time="2.443" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

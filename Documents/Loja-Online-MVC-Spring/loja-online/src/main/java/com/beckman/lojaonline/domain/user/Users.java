@@ -33,11 +33,8 @@ public class Users implements UserDetails {
 	private List<Product> product;
 
 	public Users(UserDTO data) {
-		this.id = data.id();
 		this.name = data.name();
 		this.password = data.password();
-		this.cart = data.cart();
-		this.product = data.products();
 		this.role = data.role();
 	}
 	public Users(RegisterDTO data) {

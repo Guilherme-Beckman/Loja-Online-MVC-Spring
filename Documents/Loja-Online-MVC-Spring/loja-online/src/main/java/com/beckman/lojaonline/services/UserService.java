@@ -2,6 +2,8 @@ package com.beckman.lojaonline.services;
 
 import java.util.List;
 
+import javax.naming.InvalidNameException;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.beckman.lojaonline.domain.product.ProductDTO;
 import com.beckman.lojaonline.domain.user.RegisterDTO;
 import com.beckman.lojaonline.domain.user.UserDTO;
 import com.beckman.lojaonline.domain.user.Users;
+import com.beckman.lojaonline.domain.user.exceptions.UserNameNotValidException;
 import com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException;
 import com.beckman.lojaonline.repositories.UserRepository;
 
@@ -24,7 +27,8 @@ public UserService(UserRepository repository) {
 }
 
 @Transactional
-public Users insert(RegisterDTO data){
+public Users insert(RegisterDTO data) {
+	if(!(data.name().isEmpty() && data.name().isBlank())) {
 	String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 	   Users user = new Users(data);
 	   user.setPassword(encryptedPassword);
@@ -33,7 +37,11 @@ public Users insert(RegisterDTO data){
     user.setCart(shoppingCart);
     repository.save(user);
     return user;
+} else {
+	throw new UserNameNotValidException();
 }
+}
+
 
 
 public Users update(Long id, UserDTO data) {
