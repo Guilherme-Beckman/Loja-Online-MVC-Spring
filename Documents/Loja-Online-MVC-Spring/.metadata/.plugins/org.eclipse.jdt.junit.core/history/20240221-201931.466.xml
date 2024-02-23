@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="loja-online (1)" project="loja-online" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="com.beckman.lojaonline.services.UserServiceTest" time="2.12" displayname="UserServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]">
-    <testcase name="testInsertSucess" classname="com.beckman.lojaonline.services.UserServiceTest" time="2.12" displayname="Should insert user with sucess on DB" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.UserServiceTest]/[method:testInsertSucess()]"/>
-  </testsuite>
-  <testsuite name="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.029" displayname="LojaOnlineApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]">
-    <testcase name="contextLoads" classname="com.beckman.lojaonline.LojaOnlineApplicationTests" time="0.029" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.LojaOnlineApplicationTests]/[method:contextLoads()]"/>
-  </testsuite>
-</testrun>

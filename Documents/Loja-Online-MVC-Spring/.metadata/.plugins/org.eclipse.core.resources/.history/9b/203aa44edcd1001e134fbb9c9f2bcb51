@@ -1,0 +1,7 @@
+package com.beckman.lojaonline.domain.user.exceptions;
+
+public class PasswordNotValidException extends RuntimeException {
+	public UserNameNotValidException() {
+		super("Username is not valid");
+	}
+}

@@ -27,7 +27,6 @@ private Users user;
 
 
 public Product(ProductDTO data) {
-	this.id = data.id();
 	this.name = data.name();
 	this.price = data.price();
 	this.description = data.description();

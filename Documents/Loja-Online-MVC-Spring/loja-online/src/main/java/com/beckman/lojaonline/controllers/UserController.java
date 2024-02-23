@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.ProductDTO;
-import com.beckman.lojaonline.domain.user.UserDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.beckman.lojaonline.services.UserService;
 @RestController
@@ -24,11 +23,6 @@ private UserService service;
 		this.service = service;
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Users> update(@PathVariable Long id,@RequestBody UserDTO data){
-		Users user = this.service.update(id, data);
-		return ResponseEntity.ok().body(user);
-	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Users> delete(@PathVariable Long id) {
 		this.service.delete(id);
@@ -46,8 +40,8 @@ private UserService service;
 		return ResponseEntity.ok().body(user);
 		}
 	@PostMapping("/product/{id}")
-	public ResponseEntity<Users> addProduct(@PathVariable Long id,@RequestBody ProductDTO data){
-		Users user = this.service.addProduct(id, data);
-		return ResponseEntity.ok().body(user);
+	public ResponseEntity addProduct(@PathVariable Long id,@RequestBody ProductDTO data){
+		Product user = this.service.addProduct(id, data);
+		return ResponseEntity.ok().build();
 	}
 }
