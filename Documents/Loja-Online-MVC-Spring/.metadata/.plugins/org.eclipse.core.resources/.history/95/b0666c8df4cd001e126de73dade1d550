@@ -1,5 +1,0 @@
-package com.beckman.lojaonline.controllers;
-
-public class AuthenticationController {
-
-}

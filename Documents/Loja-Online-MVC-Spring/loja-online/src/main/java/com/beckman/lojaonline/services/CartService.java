@@ -31,18 +31,8 @@ public CartService(CartRepository repository) {
 }
 
 
-public Cart update(Long id, CartDTO data) {
-	Cart cart = this.repository.findById(id).orElseThrow(CartNotFoundException::new);
-	if(!(data.itens()==null)) {
-		cart.setItens(data.itens());
-	};
-	this.repository.save(cart);
-	return cart;	
-}
-public void delete(Long id) {
-	Cart cart = this.repository.findById(id).orElseThrow(CartNotFoundException::new);
-this.repository.delete(cart);
-}
+
+
 public List<Cart> getAll(){
 	return repository.findAll();
 }
@@ -103,6 +93,7 @@ public CartItem addItenOnCart (Long cartId, Long productId) {
 	List<CartItem> itens = cart.getItens();
 	itens.add(item);
 	cart.setItens(itens);
+	this.itemRepository.save(item);
 	return item;
 	}else {
 		cartItem.get().setQuantity(cartItem.get().getQuantity()+1);
@@ -111,4 +102,5 @@ public CartItem addItenOnCart (Long cartId, Long productId) {
 	}else throw new IdNotValidException();
 }
 }
+
 

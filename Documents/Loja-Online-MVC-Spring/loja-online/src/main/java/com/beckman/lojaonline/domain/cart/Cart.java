@@ -1,12 +1,12 @@
 package com.beckman.lojaonline.domain.cart;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.beckman.lojaonline.domain.cartitem.CartItem;
 import com.beckman.lojaonline.domain.user.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,10 +24,9 @@ private Long id;
 @JsonIgnore
 private Users user;
 @OneToMany(mappedBy = "cart")
-private List<CartItem> itens;
+private List<CartItem> itens = new LinkedList<>();;
 
 public Cart(CartDTO data) {
-	this.id = data.id();
 	this.user = data.user();
 	this.itens = data.itens();
 }
@@ -37,8 +36,7 @@ public Cart() {
 	
 }
 
-public Cart(Long id, Users user, List<CartItem> itens) {
-	this.id = id;
+public Cart(Users user, List<CartItem> itens) {
 	this.user = user;
 	this.itens = itens;
 }

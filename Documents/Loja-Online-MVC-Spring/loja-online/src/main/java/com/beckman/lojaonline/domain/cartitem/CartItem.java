@@ -1,8 +1,9 @@
 package com.beckman.lojaonline.domain.cartitem;
 
+import java.util.Objects;
+
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.product.Product;
-import com.beckman.lojaonline.domain.product.ProductDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class CartItem {
@@ -97,7 +97,19 @@ public Cart getCart() {
 public void setCart(Cart cart) {
 	this.cart = cart;
 }
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
 
+    CartItem otherCartItem = (CartItem) obj;
+    return id.equals(otherCartItem.id);  // Check for equality based on unique identifier (e.g., id)
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(id);
+}
 
 
 

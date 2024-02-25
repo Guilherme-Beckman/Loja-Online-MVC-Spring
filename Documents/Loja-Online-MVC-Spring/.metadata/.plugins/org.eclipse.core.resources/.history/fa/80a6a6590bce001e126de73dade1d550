@@ -1,5 +1,0 @@
-package com.beckman.lojaonline.infra.security;
-
-public class SecurityFilter {
-
-}

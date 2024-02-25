@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="jakarta.persistence.ManyToOne"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.CartItemRepository"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.services.CartService"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.cart.Cart"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.cartitem.CartItem"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.services.CartItemService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler"/>
     <fullyQualifiedTypeName name="org.springframework.security.authentication.AuthenticationManager"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCrypt"/>
@@ -40,7 +31,6 @@
     <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.ActiveProfiles"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EntityManager"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.UserRepository"/>
     <fullyQualifiedTypeName name="org.mockito.Mock"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.UserDTO"/>
@@ -55,9 +45,19 @@
     <fullyQualifiedTypeName name="com.beckman.lojaonline.services.UserService"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.exceptions.PasswordNotValidException"/>
     <fullyQualifiedTypeName name="org.apache.catalina.User"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.ProductRepository"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.ProductDTO"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.services.ProductService"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.ProductRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.CartRepository"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.EntityNotFoundException"/>
+    <fullyQualifiedTypeName name="java.util.Objects"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.CartItemRepository"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.cart.exceptions.CartNotFoundException"/>
+    <fullyQualifiedTypeName name="org.aspectj.weaver.AjAttribute.EffectiveSignatureAttribute"/>
 </qualifiedTypeNameHistroy>

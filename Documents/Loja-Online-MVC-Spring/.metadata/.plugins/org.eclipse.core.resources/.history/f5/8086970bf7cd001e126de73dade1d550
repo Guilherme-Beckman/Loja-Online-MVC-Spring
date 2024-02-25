@@ -1,5 +1,0 @@
-package com.beckman.lojaonline.domain.user;
-
-public class AuthenticationDTO {
-
-}

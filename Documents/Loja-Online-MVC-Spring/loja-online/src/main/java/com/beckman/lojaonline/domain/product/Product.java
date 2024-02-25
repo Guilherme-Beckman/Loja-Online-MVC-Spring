@@ -30,14 +30,14 @@ public Product(ProductDTO data) {
 	this.name = data.name();
 	this.price = data.price();
 	this.description = data.description();
-
+    this.rating = 0L;
 
 }
-public Product(Long id, String name, Integer price) {
-	this.id = id;
+public Product( String name, Integer price, String description) {
 	this.name = name;
 	this.price = price;
 	this.description = description;
+	this.rating = 0L;
 }
 public Product() {
 }
