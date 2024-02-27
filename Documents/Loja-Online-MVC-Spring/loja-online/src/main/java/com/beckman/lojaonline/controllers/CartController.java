@@ -28,11 +28,7 @@ public class CartController {
         this.cartItemService = cartItemService;
     }
 
-@GetMapping("/all")
-public ResponseEntity<List<Cart>> getAll(){
-	List<Cart> listAll = this.service.getAll();
-	return ResponseEntity.ok().body(listAll);
-	}
+
 
 @GetMapping("/{id}")
 public ResponseEntity<Optional<Cart>> findById(@PathVariable Long id){

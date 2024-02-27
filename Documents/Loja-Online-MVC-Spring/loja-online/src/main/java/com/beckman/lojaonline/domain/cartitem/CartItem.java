@@ -15,7 +15,8 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class CartItem {
 @Id
-private Long id;
+private Long realId;
+private Long productId;
 private Integer quantity;
 private String name;
 private Integer price;
@@ -25,37 +26,61 @@ private Long rating;
 @JoinColumn(name = "cart_id")
 @JsonIgnore
 private Cart cart;
+
+
 public CartItem() {
 }
 
 public CartItem(Long id, Cart cart, Integer quantity, String name, Integer price, String description, Users user, Long rating) {
-	this.id = id;
+	this.productId = id;
 	this.quantity = quantity;
 	this.name = name;
 	this.price = price;
 	this.description = description;
 	this.rating = rating;
+	this.cart = cart;
 }
 public CartItem(Product product) {
-	this.id = product.getId();
+	this.productId = product.getId();
 	this.quantity = 1;
 	this.name = product.getName();
 	this.price = product.getPrice();
 	this.description = product.getDescription();
 
 }
+public Long makeItemUniqueId(Long productId, Long cartId) {
+    String concatenatedId = String.valueOf(productId) + String.valueOf(cartId);
+    Long realId= Long.parseLong(concatenatedId);
+    return realId;
+}
 
 public Long getId() {
-	return id;
+	return productId;
 }
 public void setId(Long id) {
-	this.id = id;
+	this.productId = id;
 }
 public Integer getQuantity() {
 	return quantity;
 }
 public void setQuantity(Integer quantity) {
 	this.quantity = quantity;
+}
+
+public Long getRealId() {
+	return realId;
+}
+
+public void setRealId(Long realId) {
+	this.realId = realId;
+}
+
+public Long getProductId() {
+	return productId;
+}
+
+public void setProductId(Long productId) {
+	this.productId = productId;
 }
 
 public String getName() {
@@ -103,12 +128,12 @@ public boolean equals(Object obj) {
     if (obj == null || getClass() != obj.getClass()) return false;
 
     CartItem otherCartItem = (CartItem) obj;
-    return id.equals(otherCartItem.id);  // Check for equality based on unique identifier (e.g., id)
+    return realId.equals(otherCartItem.realId);  // Check for equality based on unique identifier (e.g., id)
 }
 
 @Override
 public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(realId);
 }
 
 
