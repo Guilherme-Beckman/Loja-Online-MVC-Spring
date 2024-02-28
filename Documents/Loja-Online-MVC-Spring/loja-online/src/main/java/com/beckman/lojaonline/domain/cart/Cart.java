@@ -1,5 +1,6 @@
 package com.beckman.lojaonline.domain.cart;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,21 +25,22 @@ private Long id;
 @JsonIgnore
 private Users user;
 @OneToMany(mappedBy = "cart")
-private List<CartItem> itens = new LinkedList<>();;
+private List<CartItem> itens;
 
 public Cart(CartDTO data) {
 	this.user = data.user();
 	this.itens = data.itens();
+	this.itens = new ArrayList<>();
 }
 
 
 public Cart() {
-	
+	this.itens = new ArrayList<>();
 }
 
-public Cart(Users user, List<CartItem> itens) {
+public Cart(Users user) {
 	this.user = user;
-	this.itens = itens;
+	this.itens = new ArrayList<>();
 }
 
 

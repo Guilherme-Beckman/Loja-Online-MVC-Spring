@@ -135,6 +135,19 @@ public boolean equals(Object obj) {
 public int hashCode() {
     return Objects.hash(realId);
 }
+@Override
+public String toString() {
+    return "CartItem{" +
+            "realId=" + realId +
+            ", productId=" + productId +
+            ", quantity=" + quantity +
+            ", name='" + name + '\'' +
+            ", price=" + price +
+            ", description='" + description + '\'' +
+            ", rating=" + rating +
+            ", cart=" + cart +
+            '}';
+}
 
 
 

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CartServiceTest" project="loja-online" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.beckman.lojaonline.services.CartServiceTest" time="2.067" displayname="CartServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.CartServiceTest]">
-    <testcase name="testAddItenToCart" classname="com.beckman.lojaonline.services.CartServiceTest" time="2.067" displayname="Should insert a item in a cart" uniqueid="[engine:junit-jupiter]/[class:com.beckman.lojaonline.services.CartServiceTest]/[method:testAddItenToCart()]"/>
-  </testsuite>
-</testrun>

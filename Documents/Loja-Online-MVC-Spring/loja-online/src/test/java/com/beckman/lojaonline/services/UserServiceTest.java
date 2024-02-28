@@ -109,6 +109,8 @@ class UserServiceTest {
         Optional<Product> testProduct = this.productRepository.findById(productId);
         assertThat(testProduct).isPresent();
         assertThat(testProduct.get().getUser().getId()).isEqualTo(newUser.getId());
+        
+        
     }
 
 
