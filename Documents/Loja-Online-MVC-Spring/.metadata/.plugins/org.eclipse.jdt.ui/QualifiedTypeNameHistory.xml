@@ -49,7 +49,6 @@
     <fullyQualifiedTypeName name="org.aspectj.weaver.AjAttribute.EffectiveSignatureAttribute"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.Users"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.UserRepository"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException"/>
     <fullyQualifiedTypeName name="org.hibernate.proxy.EntityNotFoundDelegate"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
@@ -57,7 +56,8 @@
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.UserRole"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.ProductDTO"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.EntityNotFoundException"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.EntityNotFoundException"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException"/>
 </qualifiedTypeNameHistroy>
