@@ -15,41 +15,35 @@ import com.beckman.lojaonline.domain.cart.exceptions.ProductsListEmptyException;
 import com.beckman.lojaonline.domain.cartitem.CartItem;
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException;
+import com.beckman.lojaonline.domain.user.Users;
+import com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException;
 import com.beckman.lojaonline.repositories.CartItemRepository;
 import com.beckman.lojaonline.repositories.CartRepository;
 import com.beckman.lojaonline.repositories.ProductRepository;
+import com.beckman.lojaonline.repositories.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
 public class CartService {
+@Autowired
 private CartRepository repository;
 @Autowired
 private CartItemRepository itemRepository ;
+@Autowired
 private ProductRepository productRepository ;
-public CartService(CartRepository repository) {
-   this.repository = repository;
-}
+@Autowired
+private UserRepository userRepository;
 
-
-
-public List<CartItem> getAllItensFromCart (Long cartId){
-	Cart cart = this.repository.findById(cartId).orElseThrow(CartNotFoundException::new);
-	List<CartItem> allItens = cart.getItens();
-	return allItens;
-	
-}
-public Optional<Cart> findById(Long id){
-	return this.repository.findById(id);
-}
-@Transactional
-public List<CartItem>  getAllProducts(Long id){
-	if (id !=null && id != 0) {
-		Cart cart = repository.findById(id).orElseThrow(CartNotFoundException::new);
-		List<CartItem> allProducts = cart.getItens();
-		if(!allProducts.isEmpty()) {
-			return allProducts;
+public List<CartItem>  getAllItensFromCart(Long userId){
+	if (userId !=null && userId != 0) {
+		Users user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+		Cart cart = user.getCart();
+		List<CartItem> allItens = cart.getItens();
+		
+		if(!allItens.isEmpty()) {
+			return allItens;
 		}else {
 			  throw new ProductsListEmptyException();
 		}
@@ -60,12 +54,12 @@ public List<CartItem>  getAllProducts(Long id){
 	}
 	
 }
-
 @Transactional
-public Cart deleteProductInCart(Long id, Long productId){
-	if (id !=null && id != 0 && productId !=null && productId != 0) {
-		Cart cart = this.repository.findById(id).orElseThrow(CartNotFoundException::new);
-		CartItem product = this.itemRepository.findById(productId).orElseThrow(ProductNotFoundException::new);
+public Cart deleteProductInCart(Long userId, Long productId){
+	if (userId !=null && userId != 0 && productId !=null && productId != 0) {
+		Users user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+		Cart cart = user.getCart();
+		var product = this.itemRepository.findById(this.makeItemUniqueId(userId, productId)).orElseThrow(ProductNotFoundException::new);	
 		List<CartItem> allProducts = cart.getItens();
 	       if (allProducts.contains(product)) {
 	            allProducts.remove(product);
@@ -81,12 +75,14 @@ public Cart deleteProductInCart(Long id, Long productId){
 	}
 	}
 @Transactional
-public CartItem addItenOnCart (Long cartId, Long productId) {
-	if (cartId !=null && cartId != 0 && productId !=null && productId != 0) {
-	var cartItem = this.itemRepository.findById(productId);
-	if(cartItem.isEmpty()) {
-	Cart cart = repository.findById(cartId).orElseThrow(CartNotFoundException::new);
+public CartItem addItenOnCart (Long userId, Long productId) {
+	if (userId !=null && userId != 0 && productId !=null && productId != 0) {
+	Users user = this.userRepository.findById(userId).orElseThrow(CartNotFoundException::new);
+	Cart cart = user.getCart();
 	Product product = productRepository.findById(productId).orElseThrow(ProductNotFoundException::new);
+	Long realId = this.makeItemUniqueId(userId, productId);
+	var cartItem = this.itemRepository.findById(realId);	
+	if(cartItem.isEmpty()) {
 	CartItem item = new CartItem();
 	item.setCart(cart);
 	item.setId(productId);
@@ -95,24 +91,47 @@ public CartItem addItenOnCart (Long cartId, Long productId) {
 	item.setDescription(product.getDescription());
 	item.setRating(product.getRating());
 	item.setQuantity(1);
-	if(cart.getItens().isEmpty()) {
-	List<CartItem> itens = new LinkedList<>();
+	item.setRealId(realId);
+	List<CartItem> itens = cart.getItens();
 	itens.add(item);
 	cart.setItens(itens);
-	this.repository.save(cart);
 	this.itemRepository.save(item);
+	this.repository.save(cart);
 	return item;
-	}else {
-		cart.getItens().add(item);
-		this.repository.save(cart);
-		this.itemRepository.save(item);
-		return item;
-		}
-	}else {
+
+		}else {
 		cartItem.get().setQuantity(cartItem.get().getQuantity()+1);
+		this.itemRepository.save(cartItem.get());
+		this.repository.save(cart);
 		return cartItem.get();
 	}
 	}else throw new IdNotValidException();
+}
+public Long makeItemUniqueId(Long userId, Long productId) {
+	Long cartId = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new).getCart().getId();
+
+    String concatenatedId = String.valueOf(productId) + String.valueOf(cartId);
+    Long realId= Long.parseLong(concatenatedId);
+    return realId;
+}
+@Transactional
+public CartItem decrementQuantityOfItens(Long userId, Long productId) {
+
+	Users user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+	Cart cart = user.getCart();
+	CartItem cartItem = this.itemRepository.findById(this.makeItemUniqueId(userId, productId)).orElseThrow(ProductNotFoundException::new);
+
+	List<CartItem> itens = cart.getItens();
+	if(itens.contains(cartItem)) {
+		cartItem.setQuantity(cartItem.getQuantity()-1);
+		this.itemRepository.save(cartItem);
+		this.repository.save(cart);
+		if(cartItem.getQuantity()==0) {
+			this.deleteProductInCart(userId, productId);
+		}
+		return cartItem;
+	}else throw new EntityNotFoundException("The product don't exist in the cart") ;
+	
 }
 }
 

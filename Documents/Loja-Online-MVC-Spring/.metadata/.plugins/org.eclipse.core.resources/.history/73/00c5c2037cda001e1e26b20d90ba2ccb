@@ -1,0 +1,129 @@
+package com.beckman.lojaonline.services;
+
+import com.beckman.lojaonline.domain.cart.Cart;
+import com.beckman.lojaonline.domain.cart.exceptions.IdNotValidException;
+import com.beckman.lojaonline.domain.cartitem.CartItem;
+import com.beckman.lojaonline.domain.product.Product;
+import com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException;
+import com.beckman.lojaonline.repositories.CartItemRepository;
+import com.beckman.lojaonline.repositories.CartRepository;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+@SpringBootTest
+class CartItemServiceTest {
+
+    @Mock
+    private CartItemRepository repository;
+
+    @Mock
+    private ProductService productService;
+
+    @Mock
+    private CartRepository cartRepository;
+
+    @InjectMocks
+    private CartItemService cartItemService;
+
+    @Test
+    @DisplayName("Should add an item to the cart")
+    void testAddItemToCart() {
+        // Arrange
+        Long cartId = 1L;
+        Long productId = 2L;
+
+        Cart cart = new Cart();
+        cart.setId(cartId);
+
+        Product product = new Product();
+        product.setId(productId);
+        product.setName("Test Product");
+        product.setPrice(50);
+
+        Optional<CartItem> existingCartItem = Optional.empty();
+
+        Mockito.when(repository.findById(productId)).thenReturn(existingCartItem);
+        Mockito.when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+        Mockito.when(productService.findById(productId)).thenReturn(Optional.of(product));
+
+        // Act
+        CartItem addedItem = cartItemService.addItenOnCart(cartId, productId);
+
+        // Assert
+        assertThat(addedItem).isNotNull();
+        assertThat(addedItem.getCart()).isEqualTo(cart);
+        assertThat(addedItem.getId()).isEqualTo(productId);
+        assertThat(addedItem.getName()).isEqualTo("Test Product");
+        assertThat(addedItem.getPrice()).isEqualTo(50.0);
+        assertThat(addedItem.getDescription()).isNull(); // assuming setDescription is not set in your service
+        assertThat(addedItem.getRating()).isNull(); // assuming setRating is not set in your service
+        assertThat(addedItem.getQuantity()).isEqualTo(1);
+
+        // Verify interactions
+        Mockito.verify(repository).findById(productId);
+        Mockito.verify(cartRepository).findById(cartId);
+        Mockito.verify(productService).findById(productId);
+        Mockito.verify(repository).save(addedItem);
+        Mockito.verify(cartRepository).save(cart);
+    }
+
+    @Test
+    @DisplayName("Should increment quantity if item already exists in the cart")
+    void testIncrementQuantityIfItemExists() {
+        // Arrange
+        Long cartId = 1L;
+        Long productId = 2L;
+
+        Cart cart = new Cart();
+        cart.setId(cartId);
+
+        Product product = new Product();
+        product.setId(productId);
+
+        CartItem existingCartItem = new CartItem();
+        existingCartItem.setCart(cart);
+        existingCartItem.setId(productId);
+        existingCartItem.setQuantity(1);
+
+        Mockito.when(repository.findById(productId)).thenReturn(Optional.of(existingCartItem));
+        Mockito.when(cartRepository.findById(cartId)).thenReturn(Optional.of(cart));
+
+        // Act
+        CartItem updatedItem = cartItemService.addItenOnCart(cartId, productId);
+
+        // Assert
+        assertThat(updatedItem).isNotNull();
+        assertThat(updatedItem.getCart()).isEqualTo(cart);
+        assertThat(updatedItem.getId()).isEqualTo(productId);
+        assertThat(updatedItem.getQuantity()).isEqualTo(2);
+
+        // Verify interactions
+        Mockito.verify(repository).findById(productId);
+        Mockito.verify(cartRepository).findById(cartId);
+        Mockito.verify(repository).save(updatedItem);
+        Mockito.verify(cartRepository).save(cart);
+    }
+
+    @Test
+    @DisplayName("Should throw IdNotValidException when cartId or productId is not valid")
+    void testAddItemToCartWithInvalidIds() {
+        // Arrange
+        Long invalidCartId = null;
+        Long invalidProductId = 0L;
+
+        // Act & Assert
+        assertThatThrownBy(() -> cartItemService.addItenOnCart(invalidCartId, invalidProductId))
+                .isInstanceOf(IdNotValidException.class)
+                .hasMessage("Invalid cartId or productId");
+    }
+}

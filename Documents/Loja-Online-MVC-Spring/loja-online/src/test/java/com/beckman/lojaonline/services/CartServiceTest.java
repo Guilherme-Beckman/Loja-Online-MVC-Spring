@@ -4,7 +4,8 @@
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.LinkedList;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.beckman.lojaonline.domain.cart.Cart;
 import com.beckman.lojaonline.domain.cart.exceptions.CartNotFoundException;
 import com.beckman.lojaonline.domain.cart.exceptions.IdNotValidException;
+import com.beckman.lojaonline.domain.cart.exceptions.ProductsListEmptyException;
 import com.beckman.lojaonline.domain.cartitem.CartItem;
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.ProductDTO;
@@ -101,29 +103,21 @@ class CartServiceTest {
 		Long userId = this.insertUser(newRegister).getId();
 		ProductDTO productDTO = new ProductDTO("A cool product", 12131, "It's really cool");
 		Long productId = this.insertProduct(productDTO).getId();
-
 		this.addItenOnCart(userId, productId);
 		this.addItenOnCart(userId, productId);
 		Long itenId = this.makeItemUniqueId(userId, productId);
-		System.out.println("Flamengo");
 		Optional<CartItem> savedItem = this.itemRepository.findById(itenId);
-		System.out.println("Flamengo2");
 		assertThat(savedItem).isNotEmpty();
-		System.out.println("Flamengo3");
-		
 		Long cartId = this.userRepository.findById(userId).get().getCart().getId();
 		Cart cart = this.repository.findById(cartId).get();
 		List<CartItem> itensOnCart = cart.getItens();
 		assertThat(itensOnCart.contains(savedItem.get())).isTrue();
-		System.out.println("Flamengo4");
 		this.decrementQuantityOfItens(userId, productId);
 		Optional<CartItem> addedItemA = this.itemRepository.findById(itenId);
 		assertThat(addedItemA.get().getQuantity()).isEqualTo(1L);
-		
 		this.decrementQuantityOfItens(userId, productId);
 		Optional<CartItem> addedItemB = this.itemRepository.findById(itenId);
 		assertThat(addedItemB).isEmpty();
-		System.out.println("Flamengo5");
 	   
 	}
 	@Test
@@ -161,9 +155,8 @@ class CartServiceTest {
 		ProductDTO productDTO2 = new ProductDTO("A cool product", 12131, "It's really cool");
 		Long productId2 = this.insertProduct(productDTO2).getId();
 		this.addItenOnCart(userId, productId);
-		System.out.println("Se chegou aqui vai flamengo");
 		this.addItenOnCart(userId, productId2);
-		System.out.println("Se chegou aqui vai flamengo");
+
 		
 		Long itenId = this.makeItemUniqueId(userId, productId);
 		Long itenId2 = this.makeItemUniqueId(userId, productId2);
@@ -243,13 +236,25 @@ class CartServiceTest {
 			throw new IdNotValidException();
 		}
 		}
-public List<CartItem> getAllItensFromCart (Long userId){
-		Users user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-		Cart cart = user.getCart();
-		List<CartItem> allItens = cart.getItens();
-		return allItens;
+	public List<CartItem>  getAllItensFromCart(Long userId){
+		if (userId !=null && userId != 0) {
+			Users user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+			Cart cart = user.getCart();
+			List<CartItem> allItens = cart.getItens();
+			
+			if(!allItens.isEmpty()) {
+				return allItens;
+			}else {
+				  throw new ProductsListEmptyException();
+			}
+			
+		}
+		else {
+			throw new IdNotValidException();
+		}
 		
 	}
+
 @Transactional
 public CartItem decrementQuantityOfItens(Long userId, Long productId) {
 
@@ -270,7 +275,6 @@ public CartItem decrementQuantityOfItens(Long userId, Long productId) {
 	
 }
 public Long makeItemUniqueId(Long userId, Long productId) {
-	System.out.println(userId);
 	Long cartId = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new).getCart().getId();
 
     String concatenatedId = String.valueOf(productId) + String.valueOf(cartId);
