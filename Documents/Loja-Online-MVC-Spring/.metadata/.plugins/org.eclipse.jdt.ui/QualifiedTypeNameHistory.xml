@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="org.springframework.http.HttpMethod"/>
     <fullyQualifiedTypeName name="java.security.AlgorithmConstraints"/>
     <fullyQualifiedTypeName name="java.security.AlgorithmParameterGeneratorSpi"/>
     <fullyQualifiedTypeName name="com.auth0.jwt.algorithms.Algorithm"/>
@@ -38,8 +36,6 @@
     <fullyQualifiedTypeName name="org.apache.catalina.User"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.services.ProductService"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.ProductRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.CartRepository"/>
     <fullyQualifiedTypeName name="java.util.LinkedList"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
@@ -48,16 +44,20 @@
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.cart.exceptions.CartNotFoundException"/>
     <fullyQualifiedTypeName name="org.aspectj.weaver.AjAttribute.EffectiveSignatureAttribute"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.Users"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.UserRepository"/>
     <fullyQualifiedTypeName name="org.hibernate.proxy.EntityNotFoundDelegate"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.RegisterDTO"/>
-    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.UserRole"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.ProductDTO"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.product.exceptions.ProductNotFoundException"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EntityNotFoundException"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.exceptions.UserNotFoundException"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.UserRepository"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.repositories.CartRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpMethod"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.UserRole"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.controllers.AuthenticationController"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.RegisterDTO"/>
 </qualifiedTypeNameHistroy>

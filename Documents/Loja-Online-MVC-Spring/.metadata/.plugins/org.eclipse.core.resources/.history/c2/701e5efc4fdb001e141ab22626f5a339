@@ -1,0 +1,21 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+@Controller
+@RequestMapping("/products-list")
+public class RegisterPageController {
+
+@GetMapping
+public String home(Model model) {
+
+	return ("register-page");
+}
+
+}

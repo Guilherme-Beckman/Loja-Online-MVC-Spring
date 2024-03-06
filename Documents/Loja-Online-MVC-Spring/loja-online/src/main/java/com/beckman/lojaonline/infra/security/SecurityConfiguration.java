@@ -27,7 +27,12 @@ public class SecurityConfiguration {
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(autorize -> autorize
 			.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+			.requestMatchers(HttpMethod.GET, "/products-list").permitAll()
+			.requestMatchers(HttpMethod.GET, "/register-page").permitAll()
+			
 			.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+			.requestMatchers(HttpMethod.GET, "/style.css").permitAll()
+			.requestMatchers(HttpMethod.GET, "/style-register.css").permitAll()
 			.requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN").anyRequest().authenticated()
 			)
 			.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

@@ -1,5 +1,0 @@
-package com.beckman.lojaonline.domain.product.exceptions;
-
-public class ProductNameNotValidException extends Exception {
-
-}

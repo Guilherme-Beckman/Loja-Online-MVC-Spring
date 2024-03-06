@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="system"/>
+			<item value="vai flamengo"/>
 			<item value="Sy"/>
 			<item value="syste"/>
 		</list>
