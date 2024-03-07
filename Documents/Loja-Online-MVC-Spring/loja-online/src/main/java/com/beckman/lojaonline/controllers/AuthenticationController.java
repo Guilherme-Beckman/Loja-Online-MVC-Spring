@@ -36,7 +36,7 @@ public class AuthenticationController {
 
 @PostMapping("/register")
 public ResponseEntity register (@RequestBody @Valid RegisterDTO data) {
-	System.out.println("Se chegou aqui tu é monstro");
+
 	if (this.repository.findByName(data.name()) != null) {
 		return ResponseEntity.badRequest().build();
 	}else {

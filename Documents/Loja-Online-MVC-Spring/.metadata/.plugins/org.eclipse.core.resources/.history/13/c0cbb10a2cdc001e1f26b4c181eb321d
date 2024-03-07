@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Loja Online</title>
+</head>
+<body>
+	
+    <div class="nav">
+<div class="circle">
+       <i class="ri-store-line"></i>
+</div>
+     
+        <h3>LOJA COM PRODUTOS INCRIVEIS</h3>
+
+        <div class="search">
+            <input type="text" placeholder="Buscar produtos...">
+            <button type="submit"> <i class="ri-search-line"></i></button>
+  </div>  <div class="home">
+<a href="#">
+    <i class="ri-home-4-line"></i>
+</a>
+        
+
+   </div>
+       
+    </div>
+    <div class="nav2">
+        <div class="back-circle"> 
+            <ul>
+                <li><span><a href="registration/login.html">Crie sua conta</a></span></li>
+                <li>|</li>
+                <li><span><a href="#">Entre</a></span></li>
+                <li>|</li>
+                <li><a href="#"><i class="ri-shopping-cart-line"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+        
+    </div>
+
+    <div class="cart-container">
+
+        <div class="cart">
+            <div th:each="product : ${product}" class="cart">
+                 <img src="images/bananpaika.jpg" alt="LALL">
+                <div class="cart-text">
+                <h2 th:text="${product.price}"></h2>
+                <h3 th:text="${product.name}"></h3>
+           
+                </div>
+                </div>
+                </div>
+        </div>
+
+  
+    </div>
+    <div class="footer">
+<footer>
+    <h1>COMPRE A PREÇO DE BANANA</h1>
+</footer>
+    
+</div>
+
+</body>
+
+</html>
