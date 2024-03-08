@@ -17,7 +17,7 @@ import com.beckman.lojaonline.domain.user.RegisterDTO;
 
 
 @Controller
-@RequestMapping("/authentication")
+
 public class AuthenticationThymeleafController {
 @Autowired
 private AuthenticationController authenticationController;
@@ -35,6 +35,6 @@ public String register(Model model, RegisterDTO registerDTO){
 @PostMapping("/register")
 public String registerSave(@ModelAttribute("user")RegisterDTO registerDTO ){
 	this.authenticationController.register(registerDTO);
-	return "register";
+	  return "redirect:/home?success=true";
 }
 }

@@ -36,10 +36,13 @@ public class AuthenticationController {
 
 @PostMapping("/register")
 public ResponseEntity register (@RequestBody @Valid RegisterDTO data) {
-
+	System.out.println(data.name());
+System.out.println("se chegou aqui deu certp");
 	if (this.repository.findByName(data.name()) != null) {
+		System.out.println(data.name()+"err pq ja tem");
 		return ResponseEntity.badRequest().build();
 	}else {
+		System.out.println(data.name());
 		RegisterDTO register = new RegisterDTO(data.name(),data.password(), UserRole.USER);
 		Users user = this.userService.insert(register);
 		return ResponseEntity.ok().body(user);

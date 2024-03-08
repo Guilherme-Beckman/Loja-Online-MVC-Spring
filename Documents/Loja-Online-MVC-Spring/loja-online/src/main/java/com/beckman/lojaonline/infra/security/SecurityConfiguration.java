@@ -24,26 +24,32 @@ public class SecurityConfiguration  {
 	@Bean
 	public SecurityFilterChain securityFilterChain( HttpSecurity httpSecurity) throws Exception {
 	return httpSecurity
+            
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .formLogin(login -> login
-                    .loginPage("/login.html")
-                    .failureUrl("/login-error.html")
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/home", true)
                     .permitAll())
             .logout(logout -> logout
-                    .logoutSuccessUrl("/index.html")
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login?logout")
                     .permitAll())
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(autorize -> autorize
-                            .requestMatchers(HttpMethod.POST, "/authentication/login").permitAll()
+            		.requestMatchers(HttpMethod.GET, "/login").permitAll()
+            		.requestMatchers(HttpMethod.GET, "/register").permitAll()
+            		.requestMatchers(HttpMethod.POST, "/register").permitAll()
+                            
                             .requestMatchers(HttpMethod.GET, "/home").permitAll()
                             .requestMatchers(HttpMethod.GET, "/register").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/login").permitAll()
                             .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/css/**").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/templates/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/style.css").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/style-register.css").permitAll()
+                            
                             .requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN").anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
