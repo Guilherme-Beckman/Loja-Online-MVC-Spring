@@ -50,7 +50,7 @@ public class SecurityConfiguration  {
                             .requestMatchers(HttpMethod.GET, "/style.css").permitAll()
                             .requestMatchers(HttpMethod.GET, "/style-register.css").permitAll()
                             
-                            .requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN").anyRequest().authenticated()
+                            
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
             .build();

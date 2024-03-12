@@ -1,6 +1,0 @@
-server.port = 8081
-spring.datasource.url=jdbc:postgresql://localhost:5432/loja_online_mvc
-spring.datasource.username=beckman
-spring.datasource.password=1234
-
-api.security.token.secret=${JWT_SECRET:1234}

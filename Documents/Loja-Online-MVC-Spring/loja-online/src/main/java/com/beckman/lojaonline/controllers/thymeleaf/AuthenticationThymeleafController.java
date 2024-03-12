@@ -1,17 +1,17 @@
+
 package com.beckman.lojaonline.controllers.thymeleaf;
 
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.beckman.lojaonline.controllers.AuthenticationController;
+import com.beckman.lojaonline.controllers.AuthenticationService;
+import com.beckman.lojaonline.domain.user.AuthenticationDTO;
 import com.beckman.lojaonline.domain.user.RegisterDTO;
 
 
@@ -20,11 +20,17 @@ import com.beckman.lojaonline.domain.user.RegisterDTO;
 
 public class AuthenticationThymeleafController {
 @Autowired
-private AuthenticationController authenticationController;
+private AuthenticationService authenticationService;
+
 
 @GetMapping ("/login") 
-public String login(Model model, RegisterDTO registerDTO){
-	model.addAttribute("user", registerDTO);
+public String login(@ModelAttribute("user") AuthenticationDTO authenticationDTO, Model model){
+	model.addAttribute("user", authenticationDTO);
+	  if (authenticationService.login(authenticationDTO)) {
+	        model.addAttribute("success", "Logado com sucesso");
+	    } else {
+	        model.addAttribute("error", "Email ou Senha incorretos");
+	    }
 	return "login";
 }
 @GetMapping ("/register") 
@@ -33,8 +39,12 @@ public String register(Model model, RegisterDTO registerDTO){
 	return "register";
 }
 @PostMapping("/register")
-public String registerSave(@ModelAttribute("user")RegisterDTO registerDTO ){
-	this.authenticationController.register(registerDTO);
-	  return "redirect:/home?success=true";
+public String registerSave(@ModelAttribute("user") RegisterDTO registerDTO, Model model) {
+    if (authenticationService.register(registerDTO)) {
+        model.addAttribute("success", "Registrado com sucesso");
+    } else {
+        model.addAttribute("error", "Email já existe. Escolha outro.");
+    }
+    return "register";
 }
 }

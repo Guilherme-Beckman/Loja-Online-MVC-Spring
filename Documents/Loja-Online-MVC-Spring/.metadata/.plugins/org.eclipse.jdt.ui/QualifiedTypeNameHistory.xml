@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.security.AlgorithmConstraints"/>
-    <fullyQualifiedTypeName name="java.security.AlgorithmParameterGeneratorSpi"/>
-    <fullyQualifiedTypeName name="com.auth0.jwt.algorithms.Algorithm"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
     <fullyQualifiedTypeName name="com.auth0.jwt.JWT"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="com.beckman.lojaonline.controllers.AuthenticationController"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.beckman.lojaonline.domain.user.RegisterDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="com.beckman.lojaonline.controllers.thymeleaf.AuthenticationThymeleafController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>

@@ -1,4 +1,0 @@
-ALTER TABLE cart_item
-ADD COLUMN cart_id BIGINT NOT NULL,
-ADD CONSTRAINT fk_cart_item_cart FOREIGN KEY (cart_id) REFERENCES cart(id);
-

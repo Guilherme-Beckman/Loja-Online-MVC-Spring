@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.beckman.lojaonline.domain.product.Product;
 import com.beckman.lojaonline.domain.product.ProductDTO;
+import com.beckman.lojaonline.domain.user.RegisterDTO;
 import com.beckman.lojaonline.domain.user.Users;
 import com.beckman.lojaonline.services.UserService;
 @RestController
@@ -44,4 +45,5 @@ private UserService service;
 		Product user = this.service.addProduct(id, data);
 		return ResponseEntity.ok().build();
 	}
+	
 }
