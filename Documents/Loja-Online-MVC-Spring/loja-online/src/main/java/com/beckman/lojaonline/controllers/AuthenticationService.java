@@ -46,19 +46,19 @@ public Boolean register (@RequestBody @Valid RegisterDTO data) {
 	}
 }
 
-	public Boolean login(@RequestBody @Valid AuthenticationDTO data) {
-		try {
+	public String login(@RequestBody @Valid AuthenticationDTO data) {
+	if(data.name()!=null) {
 		
 		var usernamePassword= new UsernamePasswordAuthenticationToken(data.name(), data.password());
 	
 			var auth = this.authenticationManager.authenticate(usernamePassword);
 			
 			var token = tokenService.generateToken((Users) auth.getPrincipal());
-			return true;
-		}
-		catch (Exception e) {
-			return false;
-		}
+			return token;
+	}else {
+		return null;
+	}
+		
 		
 	}
 
