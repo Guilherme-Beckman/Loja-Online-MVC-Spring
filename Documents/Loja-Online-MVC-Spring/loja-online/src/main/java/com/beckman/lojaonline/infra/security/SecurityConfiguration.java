@@ -23,6 +23,7 @@ public class SecurityConfiguration  {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain( HttpSecurity httpSecurity) throws Exception {
+		 System.out.println("só para entender onde passa");
 	return httpSecurity
             
             .csrf(csrf -> csrf.disable())
@@ -54,6 +55,7 @@ public class SecurityConfiguration  {
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
+   
 	}
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

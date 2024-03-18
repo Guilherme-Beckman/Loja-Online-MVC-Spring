@@ -1,0 +1,61 @@
+package com.beckman.lojaonline.infra.security;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Enumeration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.beckman.lojaonline.repositories.UserRepository;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class SecurityFilter extends OncePerRequestFilter{
+@Autowired
+TokenService tokenService;
+@Autowired
+UserRepository repository;
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+System.out.println(request.getHeader(ALREADY_FILTERED_SUFFIX));
+		System.out.println("passou aqui dentro do método doFilterInternal");
+		var token = this.recoverToken(request);
+		System.out.println(token);
+		if (token != null) {
+			System.out.println("token de dentro:"+token);
+			var name = tokenService.validateToken(token);
+			UserDetails user = repository.findByName(name);
+			if (user != null) {
+				var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			}else {
+				filterChain.doFilter(request, response);
+			}
+		}else {
+			System.out.println("ta sem token mano");
+			filterChain.doFilter(request, response);
+		}
+		
+	}
+	private String recoverToken(HttpServletRequest request) {
+		System.out.println(request.toString());
+		var authHeader = request.getHeader("Authorization");
+		  System.out.println("Valor do cabeçalho Authorization: " + authHeader); // Adicione este log
+		if(authHeader == null) {
+			return null;
+		}else {
+			return authHeader.replace("Bearer", "");
+		}
+	}
+
+}

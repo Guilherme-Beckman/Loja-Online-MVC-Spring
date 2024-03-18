@@ -13,6 +13,7 @@ import com.beckman.lojaonline.repositories.UserRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -25,7 +26,9 @@ UserRepository repository;
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+
 		var token = this.recoverToken(request);
+		System.out.println("Token recuperado:"+token);
 		if (token != null) {
 			var name = tokenService.validateToken(token);
 			UserDetails user = repository.findByName(name);
@@ -40,13 +43,16 @@ UserRepository repository;
 		}
 		
 	}
-	private String recoverToken(HttpServletRequest request) {
-		var authHeader = request.getHeader("Authorization");
-		if(authHeader == null) {
-			return null;
-		}else {
-			return authHeader.replace("Bearer", "");
-		}
-	}
-
+    private String recoverToken(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("Authorization")) {
+                    return cookie.getValue().replace("Bearer","");
+                }
+            }
+        }
+        return null;
+    }
+	
 }

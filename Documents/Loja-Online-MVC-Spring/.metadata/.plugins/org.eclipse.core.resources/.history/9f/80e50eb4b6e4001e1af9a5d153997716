@@ -1,0 +1,64 @@
+
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.beckman.lojaonline.controllers.AuthenticationService;
+import com.beckman.lojaonline.domain.user.AuthenticationDTO;
+import com.beckman.lojaonline.domain.user.RegisterDTO;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+
+
+
+@Controller
+
+public class AuthenticationThymeleafController {
+@Autowired
+private AuthenticationService authenticationService;
+
+
+
+@GetMapping("/login")
+public String showRegistrationForm(Model model, RegisterDTO registerDTO) {
+    model.addAttribute("user", registerDTO);
+    return "register";
+}
+
+@PostMapping("/login")
+public String processRegistration(@ModelAttribute("user") RegisterDTO registerDTO, Model model) {
+    if (authenticationService.register(registerDTO)) {
+        model.addAttribute("success", "Registrado com sucesso");
+    } else {
+        model.addAttribute("error", "Email já existe. Escolha outro.");
+    }
+    return "register";
+}
+
+
+@GetMapping ("/register") 
+public String register(Model model, RegisterDTO registerDTO){
+	model.addAttribute("user", registerDTO);
+	return "register";
+}
+@PostMapping("/register")
+public String registerSave(@ModelAttribute("user") RegisterDTO registerDTO, Model model) {
+    if (authenticationService.register(registerDTO)==true) {
+        model.addAttribute("success", "Registrado com sucesso");
+    } else {
+        model.addAttribute("error", "Email já existe. Escolha outro.");
+    }
+    return "register";
+}
+}

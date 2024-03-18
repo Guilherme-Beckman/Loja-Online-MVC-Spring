@@ -1,0 +1,72 @@
+
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.beckman.lojaonline.controllers.AuthenticationService;
+import com.beckman.lojaonline.domain.user.AuthenticationDTO;
+import com.beckman.lojaonline.domain.user.RegisterDTO;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+
+
+
+@Controller
+
+public class AuthenticationThymeleafController {
+@Autowired
+private AuthenticationService authenticationService;
+
+
+
+@GetMapping("/login")
+public String login(@ModelAttribute("user") AuthenticationDTO authenticationDTO, Model model,HttpServletResponse response) {
+
+    model.addAttribute("user", authenticationDTO);
+ var token = authenticationService.login(authenticationDTO);
+
+ System.out.println(token);
+    if (token !=null) {
+   
+        model.addAttribute("success", "Logado com sucesso");
+        
+        String authorizationHeader = "Bearer " + token;
+        response.setHeader("Authorization", authorizationHeader);
+        return "login";
+    } else {
+        model.addAttribute("error", "Email ou Senha incorretos");
+        return "login";
+    }
+    
+}
+
+@GetMapping ("/register") 
+public String register(Model model, RegisterDTO registerDTO){
+	model.addAttribute("user", registerDTO);
+	return "register";
+}
+@PostMapping("/register")
+public String registerSave(@ModelAttribute("user") RegisterDTO registerDTO, Model model, HttpServletResponse response) {
+    if (authenticationService.register(registerDTO)==true) {
+    	AuthenticationDTO newDto = new AuthenticationDTO(registerDTO.name(), registerDTO.password());
+    	 var token = authenticationService.login(newDto);
+    	 String authorizationHeader = "Bearer " + token;
+         response.setHeader("Authorization", authorizationHeader);
+        model.addAttribute("success", "Registrado com sucesso");
+    } else {
+        model.addAttribute("error", "Email já existe. Escolha outro.");
+    }
+    return "register";
+}
+}
