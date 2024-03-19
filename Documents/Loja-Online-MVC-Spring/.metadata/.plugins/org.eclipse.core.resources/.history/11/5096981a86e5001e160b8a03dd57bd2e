@@ -1,0 +1,53 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.beckman.lojaonline.domain.product.ProductDTO;
+
+import com.beckman.lojaonline.domain.user.Users;
+import com.beckman.lojaonline.infra.security.SecurityFilter;
+import com.beckman.lojaonline.infra.security.TokenService;
+import com.beckman.lojaonline.repositories.UserRepository;
+import com.beckman.lojaonline.services.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Controller
+@RequestMapping("/products")
+public class ProductRegisterThymeleaf {
+@Autowired
+private UserService userService;
+@Autowired 
+SecurityFilter security;
+@Autowired
+TokenService tokenService;
+@Autowired
+UserRepository repository;
+
+@GetMapping
+public String showProductForm(Model model) {
+	model.addAttribute("product", new ProductDTO(null, null, null));
+		return "productRegister";
+}
+@PostMapping
+public String registerProduct(@ModelAttribute("product") ProductDTO productDTO, Model model, HttpServletRequest request) {
+    var token = this.security.recoverToken(request);
+    if(token != null) {
+        var name = tokenService.validateToken(token);
+        var user = repository.findByName(name);
+        var id = user.getUsername();
+        return "home";
+    }else {
+    	return "home";
+    }
+}
+
+}
+

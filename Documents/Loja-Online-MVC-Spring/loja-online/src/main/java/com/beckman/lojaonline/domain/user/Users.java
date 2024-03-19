@@ -62,8 +62,7 @@ public class Users implements UserDetails {
 		this.password = password;
 		this.role = role;
 	}
-
-	public Long getId() {
+public Long getId() {
 		return id;
 	}
 
@@ -152,7 +151,7 @@ public class Users implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

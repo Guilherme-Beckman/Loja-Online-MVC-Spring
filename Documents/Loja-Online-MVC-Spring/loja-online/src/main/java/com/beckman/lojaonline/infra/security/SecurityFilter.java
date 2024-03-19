@@ -26,9 +26,7 @@ UserRepository repository;
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-
 		var token = this.recoverToken(request);
-		System.out.println("Token recuperado:"+token);
 		if (token != null) {
 			var name = tokenService.validateToken(token);
 			UserDetails user = repository.findByName(name);
@@ -43,7 +41,7 @@ UserRepository repository;
 		}
 		
 	}
-    private String recoverToken(HttpServletRequest request) {
+    public String recoverToken(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {

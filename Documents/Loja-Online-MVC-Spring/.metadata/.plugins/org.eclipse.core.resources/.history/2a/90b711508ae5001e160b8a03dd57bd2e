@@ -1,0 +1,76 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.beckman.lojaonline.domain.product.ProductDTO;
+
+import com.beckman.lojaonline.domain.user.Users;
+import com.beckman.lojaonline.infra.security.SecurityFilter;
+import com.beckman.lojaonline.infra.security.TokenService;
+import com.beckman.lojaonline.repositories.UserRepository;
+import com.beckman.lojaonline.services.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Controller
+@RequestMapping("/products")
+public class ProductRegisterThymeleaf {
+@Autowired
+private UserService userService;
+@Autowired 
+SecurityFilter security;
+@Autowired
+TokenService tokenService;
+@Autowired
+UserRepository repository;
+
+@GetMapping
+public String showProductForm(Model model, ProductDTO productDTO) {
+	model.addAttribute("product", productDTO);
+		return "productRegister";
+}
+@PostMapping
+public String registerProduct(@ModelAttribute("product") ProductDTO productDTO, Model model, HttpServletRequest request) {
+    System.out.println("Iniciando registro do produto...");
+
+    // Recuperando o token da requisição
+    var token = this.security.recoverToken(request);
+    System.out.println("Token recebido: " + token);
+
+    if (token != null) {
+        // Validando o token e obtendo o nome de usuário
+        var name = tokenService.validateToken(token);
+        System.out.println("Nome de usuário extraído do token: " + name);
+
+        // Realizando a lógica com o nome de usuário
+        if (name != null && !name.isEmpty()) {
+            // Você pode fazer algo com o nome de usuário aqui, como procurá-lo no seu repositório
+            var userDetails = repository.findByName(name);
+            if (userDetails != null) {
+                System.out.println("Detalhes do usuário encontrado no repositório: " + userDetails);
+                // Redirecionando para a página "home"
+                return "redirect:home";
+            } else {
+                System.out.println("Usuário não encontrado no repositório.");
+            }
+        } else {
+            System.out.println("Falha ao extrair o nome de usuário do token.");
+        }
+    } else {
+        System.out.println("Token não encontrado na requisição.");
+    }
+
+    // Redirecionando para a página "home" em caso de falha
+    return "redirect:home";
+}
+
+
+}
+

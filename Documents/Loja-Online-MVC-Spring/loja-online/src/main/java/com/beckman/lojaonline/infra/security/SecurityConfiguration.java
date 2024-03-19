@@ -41,17 +41,18 @@ public class SecurityConfiguration  {
                     .permitAll())
             .authorizeHttpRequests(autorize -> autorize
             		.requestMatchers(HttpMethod.GET, "/login").permitAll()
+            		.requestMatchers(HttpMethod.POST, "/login").permitAll()
             		.requestMatchers(HttpMethod.GET, "/register").permitAll()
             		.requestMatchers(HttpMethod.POST, "/register").permitAll()
                             
                             .requestMatchers(HttpMethod.GET, "/home").permitAll()
                             .requestMatchers(HttpMethod.GET, "/register").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/login").permitAll()
                             .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                             .requestMatchers(HttpMethod.GET, "/style.css").permitAll()
                             .requestMatchers(HttpMethod.GET, "/style-register.css").permitAll()
-                            
-                            
+                            .requestMatchers(HttpMethod.GET, "/productRegister").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/products").permitAll()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
             .build();

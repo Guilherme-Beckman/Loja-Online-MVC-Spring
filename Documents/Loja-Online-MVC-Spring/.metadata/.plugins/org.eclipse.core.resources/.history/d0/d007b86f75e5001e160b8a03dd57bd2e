@@ -1,0 +1,45 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.beckman.lojaonline.domain.product.ProductDTO;
+import com.beckman.lojaonline.infra.security.SecurityFilter;
+import com.beckman.lojaonline.services.UserService;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@Controller
+@RequestMapping("/products")
+public class ProductRegisterThymeleaf {
+@Autowired
+private UserService userService;
+@Autowired 
+SecurityFilter security;
+
+
+@GetMapping 
+public String register(Model model, ProductDTO productDTO){
+	model.addAttribute("product", productDTO);
+	return "productRegister";
+}
+@PostMapping
+public String registerSave(@ModelAttribute("product") ProductDTO productDTO, Model model, HttpServletResponse response) {
+
+    		{
+
+        model.addAttribute("success", "Produto registrado com sucesso");
+    } else {
+        model.addAttribute("error", "Email já existe. Escolha outro.");
+        return  "register";
+    }
+    return "login";
+}
+
+
+}

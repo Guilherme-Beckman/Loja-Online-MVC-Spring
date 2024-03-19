@@ -1,0 +1,30 @@
+package com.beckman.lojaonline.controllers.thymeleaf;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.beckman.lojaonline.domain.product.ProductDTO;
+import com.beckman.lojaonline.domain.user.RegisterDTO;
+import com.beckman.lojaonline.services.UserService;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@Controller
+@RequestMapping("/products")
+public class ProductRegisterThymeleaf {
+@Autowired
+private UserService userService;
+
+@GetMapping ("/produtcs") 
+public String register(){
+	System.out.println("passou aqu");
+	return "productRegister";
+}
+
+
+}

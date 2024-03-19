@@ -10,4 +10,5 @@ import com.beckman.lojaonline.domain.user.Users;
 public interface UserRepository extends JpaRepository<Users, Long>{
 	
 UserDetails findByName(String name);
+
 }

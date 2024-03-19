@@ -38,10 +38,12 @@ public String generateToken(Users user) {
 }	
 public String validateToken(String token) {
 		try {
+			System.out.println("ta indo vazio");
 			Algorithm algorthm = Algorithm.HMAC256(secret);
 			return JWT.require(algorthm).withIssuer("auth-api").build().verify(token).getSubject();
 			
 		} catch (JWTVerificationException e) {
+			
 			return "";
 		}
 	}
